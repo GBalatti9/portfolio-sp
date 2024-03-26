@@ -8,11 +8,15 @@ import { UserProvider } from "../auth/context";
 export const AppRouter = () => {
     return (
         <Routes>
-            {/* Rutas públicas */}
             <Route path="/" element={ <HomePage /> }/>
-            <Route path="/login" element={ <LoginPage /> }/>
 
-            {/* Ruta privada */}
+
+            <Route path="/login" element={ 
+                <UserProvider>
+                    <LoginPage /> 
+                </UserProvider>
+            }/>
+
                 <Route path="/admin" element={ 
                         <UserProvider>
                     <AdminPage /> 
