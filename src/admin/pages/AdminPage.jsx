@@ -15,7 +15,8 @@ export const AdminPage = () => {
 
     return (
         <>
-        <button onClick={ handleLogout }>Logout</button>
+            <div>Admin Page</div>
+            <button onClick={ handleLogout }>Logout</button>
         </>
     )
 }

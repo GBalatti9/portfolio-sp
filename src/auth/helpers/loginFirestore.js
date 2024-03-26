@@ -12,8 +12,8 @@ export const loginFirestore = async ( user ) => {
             dbUser = doc.data();
         });
         
-        if (dbUser.password === user.Contraseña) {
-            return dbUser
+        if (dbUser.password === user.Contraseña || dbUser.email === user.Nombre) {
+            return 'Incorrect credentials'
         } else {
             return null;
         }
@@ -22,7 +22,3 @@ export const loginFirestore = async ( user ) => {
     }
 
 }
-
-
-
-// return doc.id + " => " + doc.data();
