@@ -21,8 +21,12 @@ export const UserProvider = ({ children }) => {
 
         dispatch( action );
     }
+
+    const logout = () => {
+        dispatch({ types: types.logout, payload: {} })
+    }
         return (
-        <UserContext.Provider value={{ login, authState }}>
+        <UserContext.Provider value={{ login, logout, authState }}>
             { children }
         </UserContext.Provider>
     )
