@@ -3,6 +3,8 @@ import { HomePage } from "../main/pages";
 import { LoginPage } from "../auth/pages";
 import { AdminPage } from "../admin/pages/AdminPage";
 import { UserProvider } from "../auth/context";
+import { PrivateRoutes } from "./PrivateRoutes";
+import { PublicRoutes } from "./PublicRoutes";
 
 
 export const AppRouter = () => {
@@ -13,16 +15,21 @@ export const AppRouter = () => {
 
             <Route path="/login" element={ 
                 <UserProvider>
-                    <LoginPage /> 
+                    <PublicRoutes>
+                        <LoginPage /> 
+                    </PublicRoutes>
                 </UserProvider>
             }/>
 
                 <Route path="/admin" element={ 
-                        <UserProvider>
-                    <AdminPage /> 
+                    <UserProvider>
+                            <PrivateRoutes>
+                                <AdminPage /> 
+                            </PrivateRoutes>
                         </UserProvider>
                 }/>
             
+                <Route path="/*" element={ <Navigate to={'/'} /> }/>
         </Routes>
     )
 }
