@@ -7,5 +7,5 @@ export const PublicRoutes = ({ children }) => {
     const { authState } = useContext( UserContext );
     const { logged } = authState
 
-    return ( !logged ) ? <> { children } </> : <Navigate to='/'/>
+    return ( !logged ) ? <> { children } </> : <Navigate to='/admin'/>
 }

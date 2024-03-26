@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 import { UserContext } from './UserContext'
 import { userReducer } from './userReducer.js';
 import { types } from '../types/types.js';
+import { loginFirestore } from '../helpers';
 
 const initialState = {
     logged: false,
@@ -12,10 +13,17 @@ export const UserProvider = ({ children }) => {
 
     const [ authState, dispatch ] = useReducer( userReducer, initialState )
 
-    const login = ( user ) => {
-        const { Nombre, Contraseña } = user;
+    const login = async ( user ) => {
+        
+        const dbUser = await loginFirestore( user );
 
-        const newUser = { userName: Nombre, userPassword: Contraseña };
+        if (!dbUser) {
+            return null;
+        }
+
+        const { email, password } = dbUser;
+
+        const newUser = { userName: email, userPassword: password };
 
         const action = { types: types.login, payload: newUser };
 
