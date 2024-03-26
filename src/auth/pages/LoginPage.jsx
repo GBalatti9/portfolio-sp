@@ -1,7 +1,11 @@
+import { FormComponent } from "../components"
+import { LayoutAuth } from "../layout"
 
 
 export const LoginPage = () => {
     return (
-        <div>LoginPage</div>
+        <LayoutAuth>
+            <FormComponent /> 
+        </LayoutAuth>
     )
 }
