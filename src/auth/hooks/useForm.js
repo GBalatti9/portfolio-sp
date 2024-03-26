@@ -7,7 +7,6 @@ export const useForm = ( initialForm = {} ) => {
 
     const handleInputChange = ({ target }) => {
         const { name, value } = target;
-        console.log({ name, value });
 
         setFormState({
             ...formState,

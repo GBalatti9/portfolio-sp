@@ -1,16 +1,28 @@
-import React, { useState } from 'react'
+import { useReducer } from 'react'
 import { UserContext } from './UserContext'
+import { userReducer } from './userReducer.js';
+import { types } from '../types/types.js';
+
+const initialState = {
+    logged: false,
+    user: null
+}
 
 export const UserProvider = ({ children }) => {
 
-    const [user, setUser] = useState('');
+    const [ authState, dispatch ] = useReducer( userReducer, initialState )
 
     const login = ( user ) => {
-        console.log(user);
-        // setUser( user )
+        const { Nombre, Contraseña } = user;
+
+        const newUser = { userName: Nombre, userPassword: Contraseña };
+
+        const action = { types: types.login, payload: newUser };
+
+        dispatch( action );
     }
         return (
-        <UserContext.Provider value={{ user, login }}>
+        <UserContext.Provider value={{ login, authState }}>
             { children }
         </UserContext.Provider>
     )

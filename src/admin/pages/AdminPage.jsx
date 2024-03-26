@@ -4,9 +4,10 @@ import { UserContext } from "../../auth/context";
 
 export const AdminPage = () => {
 
-    const { user } = useContext( UserContext );
+    const { authState } = useContext( UserContext );
+    console.log({ authState });
 
     return (
-        <div>AdminPage { user } </div>
+        <div>AdminPage </div>
     )
 }
