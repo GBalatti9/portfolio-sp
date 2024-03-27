@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { useForm } from "../hooks";
+import { Button, Inputs } from "./";
 
 
 export const FormComponent = () => {
@@ -21,24 +22,20 @@ export const FormComponent = () => {
         navigate('/admin');
     }
     return (
-        <>
-            <form onSubmit={ handleSubmit }>
+        <div>
+            <form onSubmit={ handleSubmit } className="border p-4 rounded mb-2 shadow">
                 {
                     inputs.map(( input ) => (
-                        <div key={ input.id }>
-                            <label htmlFor={ input.name }>{ input.name }</label>
-                            <br />
-                            <input type={ input.type } style={{ width: '100%' }} onChange={ handleInputChange } name={ input.name }/>
-                        </div>
+                        <Inputs {...input} key={ input.id } handleInputChange={ handleInputChange }/>
                     ))
                 }
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <button>Login</button>
-                </div>
-                {
-                    authState.error ? <p className="text-red-500 text-sm text-center mt-2">{ authState.error }</p> : ''
-                }
+                    <Button />
             </form>
-        </>
+            <div className="h-2">
+                {
+                    authState.error ? <p className="text-red-500 text-sm text-center">{ authState.error }</p> : <p></p>
+                }
+            </div>
+        </div>
     )
 }
