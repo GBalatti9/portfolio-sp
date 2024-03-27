@@ -6,11 +6,11 @@ export const Inputs = ({ name, type, handleInputChange }) => {
             <label htmlFor={ name } className="font-medium">{ name }</label>
             <br />
             <input
-                type={ type }
-                className="border rounded p-1 text-base"
-                placeholder={`${ type === 'text' ? 'John Doe' : '1234...'}`}
-                onChange={ handleInputChange }
-                name={ name }
+                type        = { type }
+                className   = "border rounded p-1 text-base"
+                placeholder = {`${ type === 'text' ? 'John Doe' : '1234...'}`}
+                onChange    = { handleInputChange }
+                name        = { name }
             />
         </div>
     )

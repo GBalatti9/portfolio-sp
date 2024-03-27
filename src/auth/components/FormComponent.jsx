@@ -24,11 +24,9 @@ export const FormComponent = () => {
     return (
         <div>
             <form onSubmit={ handleSubmit } className="border p-4 rounded mb-2 shadow">
-                {
-                    inputs.map(( input ) => (
-                        <Inputs {...input} key={ input.id } handleInputChange={ handleInputChange }/>
-                    ))
-                }
+                { inputs.map(( input ) => (
+                    <Inputs {...input} key={ input.id } handleInputChange={ handleInputChange }/>
+                ))}
                     <Button />
             </form>
             <div className="h-2">

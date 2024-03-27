@@ -3,6 +3,8 @@ import { types } from "../types/types";
 
 export const userReducer = ( state, action ) => {
 
+    console.log("ACTION TYPES ", action.types);
+    console.log("ACTION TYPES ", action.type);
     switch (action.types) {
         case types.login:
             return {

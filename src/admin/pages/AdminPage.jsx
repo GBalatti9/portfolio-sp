@@ -7,6 +7,7 @@ export const AdminPage = () => {
 
     const { authState, logout } = useContext( UserContext );
     const navigate = useNavigate();
+    console.log({ authState });
 
     const handleLogout = () => {
         logout();
