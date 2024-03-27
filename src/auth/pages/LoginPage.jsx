@@ -5,7 +5,8 @@ import { UserContext } from "../context/UserContext"
 
 
 export const LoginPage = () => {
-    const { loading } = useContext( UserContext );
+    const { authState, loading } = useContext( UserContext );
+    console.log({ authState });
     return (
         <LayoutAuth>
             {
