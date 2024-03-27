@@ -7,7 +7,7 @@ import { useForm } from "../hooks";
 export const FormComponent = () => {
     
     const navigate = useNavigate();
-    const { login } = useContext( UserContext );
+    const { authState, login } = useContext( UserContext );
     const { formState, handleInputChange } = useForm();
 
     const inputs = [
@@ -35,6 +35,9 @@ export const FormComponent = () => {
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <button>Login</button>
                 </div>
+                {
+                    authState.error ? <p className="text-red-500 text-sm text-center mt-2">{ authState.error }</p> : ''
+                }
             </form>
         </>
     )

@@ -17,10 +17,17 @@ export const UserProvider = ({ children }) => {
     const login = async ( user ) => {
         setLoading( true );
         const dbUser = await loginFirestore( user );
-        if (!dbUser) return null;
 
-        const { email, password } = dbUser;
-        const newUser = { userName: email, userPassword: password };
+        if (!dbUser || Object.keys(dbUser).length === 0) {
+            const error = 'Credenciales incorrectas';
+            const action = { types: types.error, payload: error };
+            dispatch( action );
+            return setLoading(false);
+        };
+
+        delete dbUser.password;
+        const { email } = dbUser;
+        const newUser = { userName: email };
         const action  = { types: types.login, payload: newUser };
         dispatch( action );
         setLoading(false);
