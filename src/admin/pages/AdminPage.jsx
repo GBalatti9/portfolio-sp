@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export const AdminPage = () => {
 
-    const { authState, logout } = useContext( UserContext );
+    const { logout } = useContext( UserContext );
     const navigate = useNavigate();
-    console.log({ authState });
 
     const handleLogout = () => {
         logout();
