@@ -26,6 +26,7 @@ export const UserProvider = ({ children }) => {
     const login = async ( user ) => {
         setLoading( true );
         const dbUser = await loginFirestore( user );
+        return dbUser;
 
         if (!dbUser || Object.keys(dbUser).length === 0) {
             const error = 'Credenciales incorrectas';
