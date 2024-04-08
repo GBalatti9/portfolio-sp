@@ -1,1 +1,1 @@
-export * from './LogoutButton.jsx';
+export * from './Button.jsx';

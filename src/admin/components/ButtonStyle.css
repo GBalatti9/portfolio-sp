@@ -1,0 +1,7 @@
+.button-hover{
+    transition: background-color 0.2s ease;
+}
+
+.button-hover:hover{
+    background-color: rgb(29 78 216);
+}
