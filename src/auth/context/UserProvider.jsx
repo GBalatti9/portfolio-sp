@@ -23,32 +23,23 @@ export const UserProvider = ({ children }) => {
     const [ authState, dispatch ] = useReducer( userReducer, initialState, init );
     const [ loading, setLoading ] = useState(false);
 
-    const login = async ( user ) => {
+    const login = async ( userForm ) => {
         setLoading( true );
-        const dbUser = await loginFirestore( user );
-        return dbUser;
-
+        const dbUser = await loginFirestore( userForm );
+        
         if (!dbUser || Object.keys(dbUser).length === 0) {
             const error = 'Credenciales incorrectas';
             const action = { types: types.error, payload: error };
             dispatch( action );
             return setLoading(false);
         };
-
-        if (dbUser.password !== user.Contraseña) {
-            const error = 'Credenciales incorrectas';
-            const action = { types: types.error, payload: error };
-            dispatch( action );
-            return setLoading(false);
-        }
-
-        delete dbUser.password;
-        const { email } = dbUser;
-        const newUser   = { userName: email };
-        const action    = { types: types.login, payload: newUser };
+        
+        const { user } = dbUser;
+        const action    = { types: types.login, payload: user };
         dispatch( action );
-        localStorage.setItem('user', JSON.stringify(email));
+        localStorage.setItem('user', JSON.stringify(user));
         setLoading( false );
+        return console.log({dbUser});
     }
 
     const logout = () => {

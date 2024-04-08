@@ -7,16 +7,19 @@ export const loginFirestore = async ({ Nombre, Contraseña }) => {
 
     try {
         const { user }        = await signInWithEmailAndPassword( auth, Nombre, Contraseña );
-        // const { accessToken } = user;
-        // const { uid }         = user;
+
+        if (!user) return 'User not found';
 
         const { dbElements } = await getData();
-        console.log({ dbElements });
+        const { email }      = user;
 
         // Si user es true hay que retornar el usuario al provider para autenticarlo.
-        return console.log( 'Usuario autenticado exitosamente' );
+        return { 
+            user: email, 
+            elements: dbElements
+        };
     } catch (error) {
-        return console.error('Error al autenticar el usuario: ', user);
+        return console.error('Error al autenticar el usuario');
     }
     // try {
     //     const usersRef = collection(db, 'usuarios')
