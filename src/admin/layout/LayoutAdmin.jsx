@@ -1,9 +1,17 @@
-import React from 'react'
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const LayoutAdmin = ({ children }) => {
     return (
-        <div className='min-h-screen bg-gray-200'>
-            { children }
-        </div>
+        <AnimatePresence>
+            <motion.div
+                className='min-h-screen bg-gray-200'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+            >
+
+                {children}
+            </motion.div>
+        </AnimatePresence>
     )
 }
