@@ -1,5 +1,6 @@
 import { Button } from "./Button"
 import { Inputs } from "./Inputs"
+import { useForm } from '../../auth/hooks'
 
 const formElements = [
     { name: 'Nombre',      type: 'text' },
@@ -10,9 +11,11 @@ const formElements = [
 ]
 
 export const Form = ({ onClick }) => {
+const { formState, handleInputChange } = useForm();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log({ formState });
     }
 
     return (
@@ -21,7 +24,10 @@ export const Form = ({ onClick }) => {
                 <div className="grid grid-cols-2">
                 {
                     formElements.map(( element, i ) => (
-                        <Inputs {...element} key={ element + i } />
+                        <Inputs { ...element } 
+                            key               = { element + i } 
+                            handleInputChange = { handleInputChange } 
+                            />
                         ))
                 }
                 </div>
