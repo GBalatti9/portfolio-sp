@@ -1,9 +1,15 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 
 export const Inputs = ({ name, type }) => {
-
+    const [ files, setFiles ] = useState([])
     const fileInputRef = useRef();
+
+    const handleFilesUpload = ( e ) => {
+        const files = Array.from(e.target.files);
+        console.log(files.length);
+        setFiles( files )
+    }
 
     return (
         <>
@@ -29,7 +35,8 @@ export const Inputs = ({ name, type }) => {
                             </>
                             :
                             <div className="mt-2 flex items-center flex-col">
-                                <label htmlFor ={ name } className = "font-medium"> { name }</label>
+                                <label htmlFor = { name } className = "font-medium"> { name }</label>
+                                { files?.length === 1 ? <p>{ files.length } archivo seleccionado</p> : files?.length > 0 ? <p>{ files.length } archivos seleccionados</p> : '' }
                                 <img 
                                     src       = "./icons8-subir-50.png" 
                                     alt       = "Cargar archivos" 
@@ -41,7 +48,8 @@ export const Inputs = ({ name, type }) => {
                                     type      = { type } 
                                     accept    = {`${ name === 'Imágenes' ? 'image/*' : 'video/*' }`}
                                     className = "rounded-md p-2 hidden" 
-                                    multiple 
+                                    multiple
+                                    onChange  = { handleFilesUpload } 
                                     />
                             </div>
             }
