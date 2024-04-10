@@ -26,8 +26,8 @@ export const Form = ({ onClick }) => {
                 }
                 </div>
                 <div className="flex justify-around p-4">
-                    <Button color={ "bg-red-400" } text="Descartar" onClick={ onClick } />
-                    <Button color={ "bg-blue-400" } text="Guardar" />
+                    <Button color = { "red" }  text = "Descartar" onClick = { onClick } />
+                    <Button color = { "blue" } text = "Guardar" />
                 </div>
             </form>
         </>

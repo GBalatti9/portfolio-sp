@@ -21,8 +21,8 @@ export const AdminPage = () => {
         <>
         <LayoutAdmin>
             <ButtonsLayout>
-                <Button color={ "bg-blue-400" } text="Agregar un elemento" onClick={ () => setFormOpen(true) }/>
-                <Button onClick={ handleLogout } color={ "bg-blue-400" } text="Logout"/>
+                <Button color={ "blue" } text="Agregar un elemento" onClick={ () => setFormOpen(true) }/>
+                <Button onClick={ handleLogout } color={ "blue" } text="Logout"/>
             </ButtonsLayout>
             <AnimatePresence>
             {
