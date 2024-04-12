@@ -4,7 +4,6 @@ export const Inputs = ({ name, type, handleInputChange }) => {
 
     const [ files, setFiles ] = useState([]);
 
-
     const fileInputRef = useRef();
 
     const handleFilesUpload = ( e ) => {
@@ -39,7 +38,9 @@ export const Inputs = ({ name, type, handleInputChange }) => {
                             :
                             <div className="mt-2 flex items-center flex-col">
                                 <label htmlFor = { name } className = "font-medium"> { name }</label>
-                                { files?.length === 1 ? <p>{ files.length } archivo seleccionado</p> : files?.length > 0 ? <p>{ files.length } archivos seleccionados</p> : '' }
+                                <div className="h-6">
+                                    { files?.length === 1 ? <p>{ files.length } archivo seleccionado</p> : files?.length > 0 ? <p>{ files.length } archivos seleccionados</p> : <p className="italic">Ningún archivo seleccionado</p> }
+                                </div>
                                 <img 
                                     src       = "./icons8-subir-50.png" 
                                     alt       = "Cargar archivos" 

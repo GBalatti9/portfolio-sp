@@ -14,7 +14,7 @@ const formElements = [
 ]
 
 export const Form = ({ onClick }) => {
-    const [ loading, setLoading ] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const { formState, handleInputChange } = useForm();
 
@@ -48,13 +48,13 @@ export const Form = ({ onClick }) => {
     return (
         <>
             {
-                <form className="border border-white bg-white p-4 rounded-md shadow-lg mb-2 w-8/12" onSubmit={handleSubmit}>
+                <form className="border border-white bg-white p-4 rounded-md shadow-lg mb-2 w-8/12 h-4/6" onSubmit={handleSubmit}>
 
-                    {
-                        !loading ?
-                            <AnimatePresence>
+                    <AnimatePresence>
+                        {
+                            !loading ?
 
-                                <motion.div className="grid grid-cols-2 h-96" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+                                <motion.div className="grid grid-cols-2 h-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
                                     {
                                         formElements.map((element, i) => (
                                             <Inputs {...element}
@@ -70,20 +70,18 @@ export const Form = ({ onClick }) => {
                                         <Button color={"blue"} text="Guardar" />
                                     </div>
                                 </motion.div>
-                            </AnimatePresence>
-                            :
-                            <AnimatePresence>
+                                :
                                 <motion.div
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.5 }}
-                                    className="col-span-2 flex justify-center items-center h-96 border rounded-md"
+                                    className="col-span-2 flex justify-center items-center h-full border rounded-md"
                                 >
                                     <p>Loading...</p>
                                 </motion.div>
-                            </AnimatePresence>
-                    }
+                        }
+                    </AnimatePresence>
                 </form>
             }
         </>

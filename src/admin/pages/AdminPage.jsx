@@ -31,7 +31,7 @@ export const AdminPage = () => {
                 initial    = {{ opacity: 0 }}
                 animate    = {{ opacity: 1 }}
                 exit       = {{ opacity: 0 }}
-                className  = "flex justify-center border border-red-600"
+                className  = "flex justify-center items-center h-full"
                 >
                         <Form onClick = { () => setFormOpen(false) }/>
                     </motion.div>
