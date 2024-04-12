@@ -33,7 +33,7 @@ export const Inputs = ({ name, type, handleInputChange }) => {
                         :
                         name === 'Nombre' ?
                             <>
-                                <label htmlFor = { name } className = "font-medium">{ name }</label>
+                                <label htmlFor = { name }  className = "font-medium">{ name }</label>
                                 <input type    = { type }  className = "border col-span-2 rounded-md p-2" onChange={ handleInputChange } name="name"/>
                             </>
                             :

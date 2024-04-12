@@ -1,6 +1,7 @@
 import { Button } from "./Button"
 import { Inputs } from "./Inputs"
 import { useForm } from '../../auth/hooks'
+import { startUploadingFiles, uploadImagesAndVideos } from "../helpers"
 
 const formElements = [
     { name: 'Nombre',      type: 'text' },
@@ -13,9 +14,20 @@ const formElements = [
 export const Form = ({ onClick }) => {
 const { formState, handleInputChange } = useForm();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({ formState });
+        if (Object.values(formState).length === 0) return;
+
+        const { Imágenes: imgs, Videos: videos } = formState;
+
+        if (imgs?.length > 0) {
+            const imageUrls = await startUploadingFiles(imgs);
+        };
+        if (videos?.length > 0)  {
+            const videosUrls = await startUploadingFiles(videos);
+        };
+
+        
     }
 
     return (
