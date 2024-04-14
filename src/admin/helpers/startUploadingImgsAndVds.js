@@ -1,6 +1,6 @@
-import { uploadImagesAndVideos } from "./";
+import { uploadImagesAndVideos } from ".";
 
-export const startUploadingFiles = async ( files ) => {
+export const startUploadingImgsAndVds = async ( files ) => {
     if (!files.length === 0) return;
 
     const fileUploadPromises = [];

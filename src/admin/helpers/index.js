@@ -1,2 +1,3 @@
 export * from './uploadImagesAndVideos';
-export * from './startUploadingFiles';
+export * from './startUploadingImgsAndVds';
+export * from './uploadFirebase';

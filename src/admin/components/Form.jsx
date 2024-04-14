@@ -1,7 +1,6 @@
-import { Button, Inputs } from "./";
+import { Button, Inputs, LoadingSpinner } from "./";
 import { useForm } from '../../auth/hooks';
-import { startUploadingFiles } from "../helpers";
-import { motion, AnimatePresence } from 'framer-motion';
+import { startUploadingImgsAndVds, uploadFirebase } from "../helpers";
 
 import { useState } from "react";
 
@@ -14,32 +13,36 @@ const formElements = [
 ]
 
 export const Form = ({ onClick }) => {
-    const [loading, setLoading] = useState(false);
+    const [ loading, setLoading ] = useState(false);
 
-    const { formState, handleInputChange } = useForm();
+    const { formState, handleInputChange, handleResetForm } = useForm();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (Object.values(formState).length === 0) return;
 
-        const { Imágenes: imgs, Videos: videos } = formState;
+        const { name, description, Imágenes: imgs, Videos: videos } = formState;
 
         let imageUrls = [];
         let videoUrls = [];
         setLoading(true);
+
         try {
             if (imgs?.length > 0) {
-                imageUrls = await startUploadingFiles(imgs);
+                imageUrls = await startUploadingImgsAndVds(imgs);
             };
             if (videos?.length > 0) {
-                videoUrls = await startUploadingFiles(videos);
+                videoUrls = await startUploadingImgsAndVds(videos);
             };
+            const formData = { name, description, imgs: imageUrls, videos: videoUrls }
+
+            uploadFirebase(formData);
+
         } catch (error) {
             throw new Error(error);
         } finally {
-            setTimeout(() => {
-                setLoading(false);
-            }, 100);
+            handleResetForm();
+            setLoading(false);
         }
 
 
@@ -47,43 +50,28 @@ export const Form = ({ onClick }) => {
 
     return (
         <>
-            {
-                <form className="border border-white bg-white p-4 rounded-md shadow-lg mb-2 w-8/12 h-4/6" onSubmit={handleSubmit}>
+            <LoadingSpinner loading = { loading }>
+                <form className="border border-white bg-white p-4 rounded-md shadow-lg mb-2 w-8/12 h-4/6" onSubmit = { handleSubmit }>
 
-                    <AnimatePresence>
-                        {
-                            !loading ?
+                        <div className="grid grid-cols-2 h-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+                            {
+                                formElements.map((element, i) => (
+                                    <Inputs {...element}
+                                        key={element + i}
+                                        handleInputChange={handleInputChange}
+                                    />
+                                ))
+                            }
+                            <br />
+                            <div className="flex justify-around p-4 col-span-2">
+                                <Button color={"red"} text="Descartar" onClick={onClick} setDisabled={`${loading ? 'disabled' : ''}`}/>
+                                <Button color={"blue"} text="Guardar" setDisabled={`${loading ? 'disabled' : ''}`}/>
+                            </div>
+                        </div>
 
-                                <motion.div className="grid grid-cols-2 h-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-                                    {
-                                        formElements.map((element, i) => (
-                                            <Inputs {...element}
-                                                key={element + i}
-                                                handleInputChange={handleInputChange}
-                                            />
-
-                                        ))
-                                    }
-                                    <br />
-                                    <div className="flex justify-around p-4 col-span-2">
-                                        <Button color={"red"} text="Descartar" onClick={onClick} />
-                                        <Button color={"blue"} text="Guardar" />
-                                    </div>
-                                </motion.div>
-                                :
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="col-span-2 flex justify-center items-center h-full border rounded-md"
-                                >
-                                    <p>Loading...</p>
-                                </motion.div>
-                        }
-                    </AnimatePresence>
                 </form>
-            }
+            </LoadingSpinner>
         </>
+
     )
 }
