@@ -26,7 +26,7 @@ export const Inputs = ({ name, type, handleInputChange }) => {
                         <>
                             <div className="mt-4">
                                 <label htmlFor = { name } className = "col-span-1 mr-2 font-medium">{name}</label>
-                                <input type    = { type } className = "col-span-1 rounded-md p-2" defaultChecked />
+                                <input type    = { type } className = "col-span-1 rounded-md p-2" name="visibility" onChange={ handleInputChange }/>
                             </div>
                         </>
                         :

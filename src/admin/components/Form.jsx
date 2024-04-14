@@ -1,6 +1,6 @@
 import { Button, Inputs, LoadingSpinner } from "./";
 import { useForm } from '../../auth/hooks';
-import { startUploadingImgsAndVds, uploadFirebase } from "../helpers";
+import { startUploadingFirebase, startUploadingImgsAndVds, uploadFirebase } from "../helpers";
 
 import { useState } from "react";
 
@@ -14,6 +14,7 @@ const formElements = [
 
 export const Form = ({ onClick }) => {
     const [ loading, setLoading ] = useState(false);
+    const [ status, setStatus ] = useState('Ok');
 
     const { formState, handleInputChange, handleResetForm } = useForm();
 
@@ -21,30 +22,17 @@ export const Form = ({ onClick }) => {
         e.preventDefault();
         if (Object.values(formState).length === 0) return;
 
-        const { name, description, Imágenes: imgs, Videos: videos } = formState;
-
-        let imageUrls = [];
-        let videoUrls = [];
         setLoading(true);
-
         try {
-            if (imgs?.length > 0) {
-                imageUrls = await startUploadingImgsAndVds(imgs);
-            };
-            if (videos?.length > 0) {
-                videoUrls = await startUploadingImgsAndVds(videos);
-            };
-            const formData = { name, description, imgs: imageUrls, videos: videoUrls }
-
-            uploadFirebase(formData);
-
-        } catch (error) {
-            throw new Error(error);
-        } finally {
+            const { status } = await startUploadingFirebase(formState);
+            setStatus( status );
+            console.log(status);
             handleResetForm();
+        } catch (error) {
+            throw new Error('Error en admin/components/Form: ', error);
+        } finally{
             setLoading(false);
         }
-
 
     }
 
