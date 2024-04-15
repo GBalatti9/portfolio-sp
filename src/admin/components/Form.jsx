@@ -20,13 +20,13 @@ export const Form = ({ onClick }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        handleResetForm();
         if (Object.values(formState).length === 0) return;
 
         setLoading(true);
         try {
             const { status } = await startUploadingFirebase(formState);
             setStatus( status );
-            console.log(status);
             handleResetForm();
         } catch (error) {
             throw new Error('Error en admin/components/Form: ', error);
@@ -52,8 +52,8 @@ export const Form = ({ onClick }) => {
                             }
                             <br />
                             <div className="flex justify-around p-4 col-span-2">
-                                <Button color={"red"} text="Descartar" onClick={onClick} setDisabled={`${loading ? 'disabled' : ''}`}/>
-                                <Button color={"blue"} text="Guardar" setDisabled={`${loading ? 'disabled' : ''}`}/>
+                                <Button color = { "red" }  text = "Descartar" onClick = {onClick} setDisabled={`${loading ? 'disabled' : ''}`}/>
+                                <Button color = { "blue" } text = "Guardar"   setDisabled = {`${loading ? 'disabled' : ''}`}/>
                             </div>
                         </div>
 
