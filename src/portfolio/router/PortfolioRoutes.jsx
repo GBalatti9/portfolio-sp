@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { AboutPage, HomePage, WorkPage } from "../pages"
+import { AboutPage, ContactPage, HomePage, WorkPage } from "../pages"
 
 export const PortfolioRoutes = () => {
     return (
@@ -8,6 +8,7 @@ export const PortfolioRoutes = () => {
 
             <Route path="work" element={<WorkPage />}/>
             <Route path="about" element={<AboutPage />}/>
+            <Route path="contact" element={<ContactPage />}/>
             
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>
