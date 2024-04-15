@@ -10,14 +10,14 @@ export const Table = () => {
         const { documents } = await getDocumentsFromFirebase();
         setDocs(documents);
     };
-    
+
     useEffect(() => {
         getDocuments();
     }, [])
 
 
     return (
-        <div className="flex flex-col w-full px-4">
+        <div className="flex flex-col w-full mx-2">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className="overflow-hidden border rounded-md shadow-lg">
@@ -35,7 +35,7 @@ export const Table = () => {
                                         <tr className="border-b border-neutral-200 bg-white" key={doc.id}>
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.id}</td>
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.name}</td>
-                                            <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.description}</td>
+                                            <td className="px-6 py-4 font-medium whitespace-normal">{doc.description}</td>
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                                                 {
                                                     doc.images.map((src) => (
