@@ -1,46 +1,64 @@
+import { useEffect, useState } from "react";
+import { getDocumentsFromFirebase } from "../helpers"
 
+const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility']
 
 export const Table = () => {
+    const [ docs, setDocs ] = useState([]);
+
+    const getDocuments = async () => {
+        const { documents } = await getDocumentsFromFirebase();
+        setDocs(documents);
+    };
+    
+    useEffect(() => {
+        getDocuments();
+    }, [])
+
+
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full px-4">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className="overflow-hidden border rounded-md shadow-lg">
                         <table
-                            className="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                            <thead
-                                className="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
+                            className="min-w-full text-sm font-light text-surface dark:text-white text-center">
+                            <thead className="border border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
                                 <tr>
-                                    <th scope="col" className="px-6 py-4">#</th>
-                                    <th scope="col" className="px-6 py-4">First</th>
-                                    <th scope="col" className="px-6 py-4">Last</th>
-                                    <th scope="col" className="px-6 py-4">Handle</th>
+                                    {tableTitles.map((title) => (<th className="px-6 py-4" key={title}>{title}</th>))}
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr
-                                    className="border-b border-neutral-200 bg-black/[0.02] dark:border-white/10">
-                                    <td className="whitespace-nowrap px-6 py-4 font-medium">1</td>
-                                    <td className="whitespace-nowrap px-6 py-4">Mark</td>
-                                    <td className="whitespace-nowrap px-6 py-4">Otto</td>
-                                    <td className="whitespace-nowrap px-6 py-4">@mdo</td>
-                                </tr>
-                                <tr
-                                    className="border-b border-neutral-200 bg-white dark:border-white/10 dark:bg-body-dark">
-                                    <td className="whitespace-nowrap px-6 py-4 font-medium">2</td>
-                                    <td className="whitespace-nowrap px-6 py-4">Jacob</td>
-                                    <td className="whitespace-nowrap px-6 py-4">Thornton</td>
-                                    <td className="whitespace-nowrap px-6 py-4">@fat</td>
-                                </tr>
-                                <tr
-                                    className="border-b border-neutral-200 bg-black/[0.02] dark:border-white/10">
-                                    <td className="whitespace-nowrap px-6 py-4 font-medium">3</td>
-                                    <td
-                                        className="whitespace-nowrap px-6 py-4 text-center col-span-2">
-                                        Larry the Bird
-                                    </td>
-                                    <td className="whitespace-nowrap px-6 py-4">@twitter</td>
-                                </tr>
+                                {
+                                    docs?.length > 0 &&
+                                    docs.map((doc) => (
+                                        <tr className="border-b border-neutral-200 bg-white" key={doc.id}>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.id}</td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.name}</td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.description}</td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                                {
+                                                    doc.images.map((src) => (
+                                                        <img src={src} alt={doc.name} key={src} width="100px" />
+                                                    ))
+                                                }
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                                {
+                                                    Array.isArray(doc.videos) ? doc.videos.map((src) => (
+                                                        <video width="320" height="240" controls key={ src }>
+                                                            <source src="video.mp4" type="video/mp4" />
+                                                                Tu navegador no soporta el elemento de video.
+                                                        </video>
+                                                    ))
+                                                    :
+                                                    doc.videos
+                                                }
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.visibility ? 'True' : 'False'}</td>
+                                        </tr>
+                                    ))
+                                }
                             </tbody>
                         </table>
                     </div>

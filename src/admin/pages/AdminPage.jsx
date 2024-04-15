@@ -46,7 +46,7 @@ export const AdminPage = () => {
                         <Form onClick = { handleFormClose }/>
                     </div>
                 : 
-                <div className="animate-fadeIn flex justify-center items-center h-full">
+                <div className="animate-fadeIn flex justify-center items-center">
                     <Table />
                 </div>
             }
