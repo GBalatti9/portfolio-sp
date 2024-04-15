@@ -8,9 +8,7 @@ export const HomePage = () => {
 
     return (
         <HomeLayout menuVisible={menuVisible}>
-            <div className="min-h-screen flex justify-center items-center">
                 <button onClick={() => setMenuVisible(!menuVisible)}>Toggle Menu</button>
-            </div>
         </HomeLayout>
     )
 }
