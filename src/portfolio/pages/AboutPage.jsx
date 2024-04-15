@@ -1,7 +1,12 @@
+import { NavBar } from "../../ui/components"
+import { Layout } from "../layout"
 
 
 export const AboutPage = () => {
+
     return (
-        <div>AboutPage</div>
+        <Layout>
+            <NavBar />
+        </Layout>
     )
 }

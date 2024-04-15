@@ -1,7 +1,10 @@
+import { Layout } from "../layout"
 
 
 export const WorkPage = () => {
     return (
-        <div>WorkPage</div>
+        <Layout>
+            <div>WorkPage</div>
+        </Layout>
     )
 }
