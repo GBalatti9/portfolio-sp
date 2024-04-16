@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
-import { getDocumentsFromFirebase } from "../helpers"
+import { getDocumentsFromFirebase } from "../../helpers/getDocumentsFromFirebase";
+import { LoadingSpinner } from "../../ui/components";
+
 
 const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility']
 
 export const Table = () => {
     const [ docs, setDocs ] = useState([]);
+    const [ loading, setLoading ] = useState(false);
 
     const getDocuments = async () => {
+        setLoading(true);
         const { documents } = await getDocumentsFromFirebase();
         setDocs(documents);
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -17,6 +22,7 @@ export const Table = () => {
 
 
     return (
+        <LoadingSpinner loading = { loading }>
         <div className="flex flex-col w-full mx-2">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -65,5 +71,6 @@ export const Table = () => {
                 </div>
             </div>
         </div>
+        </LoadingSpinner>
     )
 }

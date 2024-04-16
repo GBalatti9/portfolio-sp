@@ -1,8 +1,9 @@
-import { Button, Inputs, LoadingSpinner } from "./";
+import { Button, Inputs } from "./";
 import { useForm } from '../../auth/hooks';
 import { startUploadingFirebase, startUploadingImgsAndVds, uploadFirebase } from "../helpers";
 
 import { useState } from "react";
+import { LoadingSpinner } from "../../ui/components";
 
 const formElements = [
     { name: 'Nombre', type: 'text' },
