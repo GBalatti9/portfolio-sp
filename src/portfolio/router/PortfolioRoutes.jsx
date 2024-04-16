@@ -1,16 +1,23 @@
-import { Navigate, Route, Routes } from "react-router-dom"
-import { AboutPage, ContactPage, HomePage, WorkPage } from "../pages"
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from 'framer-motion';
+
+import { AboutPage, ContactPage, HomePage, WorkPage } from "../pages";
 
 export const PortfolioRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<HomePage />}/>
+    const location = useLocation();
 
-            <Route path="work" element={<WorkPage />}/>
-            <Route path="about" element={<AboutPage />}/>
-            <Route path="contact" element={<ContactPage />}/>
-            
-            <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+    return (
+        <AnimatePresence>
+            <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<HomePage />} />
+
+                <Route path="work" element={<WorkPage />} />
+
+                <Route path="about" element={<AboutPage />} />
+                <Route path="contact" element={<ContactPage />} />
+
+                <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+        </AnimatePresence>
     )
 }
