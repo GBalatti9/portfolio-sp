@@ -24,7 +24,6 @@ export const HomePage = () => {
                         </h1>
                 {/* </div> */}
                 <button onClick={() => setMenuVisible(!menuVisible)}>Don't click me</button>
-                <h1 style={{ fontSize: '5rem' }}>Prueba</h1>
             </HomeLayout>
         </>
     )

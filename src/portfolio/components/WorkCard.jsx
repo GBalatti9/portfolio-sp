@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Button } from "../../admin/components/Button";
 import { motion } from 'framer-motion';
+import { useNavigate } from "react-router-dom";
 
-export const WorkCard = ({ name, description, images, videos, visibility }) => {
+export const WorkCard = ({ id, name, description, images, videos, visibility }) => {
     
     const [ counter, setCounter ] = useState(0);
+
+    const navigate = useNavigate();
 
     const nextImage = ( counter ) => {
         if (counter === images.length) {
@@ -13,8 +16,12 @@ export const WorkCard = ({ name, description, images, videos, visibility }) => {
         return setCounter(counter + 1);
     }
 
+    const proyectPage = ( id ) => {
+        navigate(`/work/${id}`)
+    }
+
     return (
-        <div className="transition-all rounded-md p-2 w-10/12 hover:shadow-lg mx-auto mb-2 cursor-pointer border bg-white">
+        <div className="transition-all rounded-md p-2 w-10/12 hover:shadow-lg mx-auto mb-2 cursor-pointer border bg-white" onClick={() => proyectPage(id) }>
             <div className="rounded-sm overflow-hidden w-full h-48 border" onClick={() => nextImage(counter) }>
                 <img src={images[counter]} alt={name} className="w-full h-full object-cover" />
             </div>

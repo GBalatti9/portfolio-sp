@@ -15,9 +15,19 @@ export const useFetchHook = () => {
     };
     
     useEffect(() => {
-        getDocuments();
-    }, []);
+        // La primera vez que el usuario ingresa a WorkPage se van a cargar los documentos desde la base de datos. Es decir, se va a ejecutar getDocuments(). Ahora bien, cuando se carguen los documentos por primera vez, se van a guardar en el localStorage y de esa manera la segunda vez que se carguen los documentos no se va a llamar nuevamente a la base de datos. FIJARSE COMO HACER PARA QUE SE ACTUALICE CUANDO CAMBIE LOS DOCUMENTOS PORQUE DE ESTA MANERA NUNCA MAS VUELVE A LLAMARSE A LA BASE DE DATOS Y NO SE SABE SI SE AGREGÓ UN ELEMENTO.
 
+        let docsFromLS = JSON.parse(localStorage.getItem('documents'));
+
+        if (!docsFromLS) {
+            getDocuments();
+            
+            docs.length > 0 && localStorage.setItem('documents', JSON.stringify(docs)); 
+        } else {
+            setDocs(docsFromLS);
+        }
+
+    }, []);
 
     return { documents: docs, loading };
 }

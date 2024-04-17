@@ -4,12 +4,13 @@ import { useFetchHook } from "../../hooks";
 import { LoadingSpinner, NavBar } from "../../ui/components";
 import { Layout } from "../layout";
 import { WorkCard } from "../components";
+import { useEffect, useState } from "react";
 
 
 export const WorkPage = () => {
 
     const { documents, loading } = useFetchHook();
-
+    
     return (
         <Layout overflow='auto'>
             <NavBar />
