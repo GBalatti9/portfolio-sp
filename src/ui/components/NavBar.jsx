@@ -18,7 +18,7 @@ export const NavBar = () => {
     }
 
     return (
-        <ul className="flex justify-around mt-5">
+        <ul className="flex justify-around mt-5" id="navbar">
         {
             newItems.map(( item ) => (
                 <Link key={item} className="text-2xl py-2" to={`/${ item.toLowerCase() }`}> { item } </Link>
