@@ -16,14 +16,15 @@ export const WorkCard = ({ id, name, description, images, videos, visibility }) 
         return setCounter(counter + 1);
     }
 
-    const proyectPage = ( id ) => {
+    const proyectPage = ( { target }, id ) => {
+        if (target.name === 'img') return;
         navigate(`/work/${id}`)
     }
 
     return (
-        <div className="transition-all rounded-md p-2 w-10/12 hover:shadow-lg mx-auto mb-2 cursor-pointer border bg-white" onClick={() => proyectPage(id) }>
+        <div className="transition-all rounded-md p-2 w-10/12 hover:shadow-lg mx-auto mb-2 cursor-pointer border bg-white" onClick={(e) => { proyectPage(e, id)} }>
             <div className="rounded-sm overflow-hidden w-full h-48 border" onClick={() => nextImage(counter) }>
-                <img src={images[counter]} alt={name} className="w-full h-full object-cover" />
+                <img src={images[counter]} alt={name} className="w-full h-full object-cover" name="img"/>
             </div>
             <div className="pl-2">
                 <h2 className="font-bold text-2xl my-1">{ name }</h2>
