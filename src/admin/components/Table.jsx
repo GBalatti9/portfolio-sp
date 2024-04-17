@@ -1,25 +1,13 @@
 import { useEffect, useState } from "react";
 import { getDocumentsFromFirebase } from "../../helpers/getDocumentsFromFirebase";
 import { LoadingSpinner } from "../../ui/components";
+import { useFetchHook } from "../../hooks";
 
 
 const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility']
 
 export const Table = () => {
-    const [ docs, setDocs ] = useState([]);
-    const [ loading, setLoading ] = useState(false);
-
-    const getDocuments = async () => {
-        setLoading(true);
-        const { documents } = await getDocumentsFromFirebase();
-        setDocs(documents);
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        getDocuments();
-    }, [])
-
+    const { documents, loading } = useFetchHook();
 
     return (
         <LoadingSpinner loading = { loading }>
@@ -36,8 +24,8 @@ export const Table = () => {
                             </thead>
                             <tbody>
                                 {
-                                    docs?.length > 0 &&
-                                    docs.map((doc) => (
+                                    documents?.length > 0 &&
+                                    documents.map((doc) => (
                                         <tr className="border-b border-neutral-200 bg-white" key={doc.id}>
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.id}</td>
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.name}</td>
