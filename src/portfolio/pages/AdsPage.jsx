@@ -15,12 +15,7 @@ export const AdsPage = () => {
                 <div className="sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-y-2 mt-4">
                 {
                     ads?.map(( doc, i ) => (
-                        <>
                         <WorkCard key={ doc.id } { ...doc } />
-                        <WorkCard key={ 1 } { ...doc } />
-                        <WorkCard key={ 2 } { ...doc } />
-                        <WorkCard key={ 3 } { ...doc } />
-                        </>
                     ))
                 }
                 </div>

@@ -28,9 +28,8 @@ export const WorkCard = ({ id, name, description, images, videos, visibility, pr
                     <p className="text-ellipsis text-sm">{ description }</p>
                 </div>
             </div>
-                <div className="flex justify-around">
+                <div className="pl-3">
                     <Button color={'darkBlue'} text={"Don't click me"} />
-                    <Button color={'darkBlue'} text={"Personal Proyect"} />
                 </div>
         </div>
     )
