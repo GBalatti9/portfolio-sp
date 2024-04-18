@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getDocumentsFromFirebase } from "../helpers/getDocumentsFromFirebase";
+import { filterDocuments } from "../helpers/filterDocuments";
 
 
 export const useFetchHook = () => {
@@ -29,5 +30,9 @@ export const useFetchHook = () => {
 
     }, []);
 
-    return { documents: docs, loading };
+    return { 
+        documents: docs, 
+        ads: filterDocuments(docs, 'ads'),
+        projects: filterDocuments(docs, 'personal-project'),
+        loading };
 }

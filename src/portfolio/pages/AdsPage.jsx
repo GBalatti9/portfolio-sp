@@ -5,7 +5,8 @@ import { WorkCard } from '../components'
 import { Layout } from '../layout'
 
 export const AdsPage = () => {
-    const { documents, loading } = useFetchHook();
+
+    const { ads, loading } = useFetchHook();
     
     return (
         <Layout overflow='auto'>
@@ -13,7 +14,7 @@ export const AdsPage = () => {
             <LoadingSpinner loading={loading}>
                 <div className="sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-y-2 mt-4">
                 {
-                    documents?.map(( doc, i ) => (
+                    ads?.map(( doc, i ) => (
                         <>
                         <WorkCard key={ doc.id } { ...doc } />
                         <WorkCard key={ 1 } { ...doc } />

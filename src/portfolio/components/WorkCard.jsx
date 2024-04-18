@@ -3,14 +3,13 @@ import { Button } from "../../admin/components/Button";
 import { motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
 
-export const WorkCard = ({ id, name, description, images, videos, visibility }) => {
+export const WorkCard = ({ id, name, description, images, videos, visibility, project }) => {
 
     const navigate = useNavigate();
 
 
     const proyectPage = ( id ) => {
-        return console.log({ id });
-        navigate(`/work/${id}`)
+        navigate(`/${project}/${id}`)
     }
 
     return (

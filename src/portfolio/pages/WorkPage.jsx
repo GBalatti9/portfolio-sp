@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export const WorkPage = () => {
 
-    const { documents, loading } = useFetchHook();
+    const { projects, loading } = useFetchHook();
     
     return (
         <Layout overflow='auto'>
@@ -17,7 +17,7 @@ export const WorkPage = () => {
             <LoadingSpinner loading={loading}>
                 <div className="sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-y-2 mt-4">
                 {
-                    documents?.map(( doc, i ) => (
+                    projects?.map(( doc, i ) => (
                         <>
                         <WorkCard key={ doc.id } { ...doc } />
                         <WorkCard key={ 1 } { ...doc } />
