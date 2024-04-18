@@ -21,6 +21,7 @@ export const Form = ({ onClick }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         handleResetForm();
+        localStorage.removeItem('documents');
 
         if (Object.values(formState).length === 0) return;
 

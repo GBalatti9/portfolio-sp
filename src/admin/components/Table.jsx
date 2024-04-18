@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import { getDocumentsFromFirebase } from "../../helpers/getDocumentsFromFirebase";
+
 import { LoadingSpinner } from "../../ui/components";
 import { useFetchHook } from "../../hooks";
+import { Button } from "./Button";
 
 
-const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility']
+const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility', 'Borrar']
 
 export const Table = () => {
-    const { documents, loading } = useFetchHook();
+    const { documents, loading, deleteDocument } = useFetchHook();
+    console.log({ loading });
 
     return (
         <LoadingSpinner loading = { loading }>
@@ -51,6 +52,9 @@ export const Table = () => {
                                                 }
                                             </td>
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.visibility ? 'True' : 'False'}</td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                                <Button text={'X'} color={'blue'} onClick={ () => deleteDocument( doc.id ) }/>
+                                                </td>
                                         </tr>
                                     ))
                                 }
