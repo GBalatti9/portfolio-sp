@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 export const Layout = ({ children, overflow }) => {
-    console.log({ overflow });
+
     return (
         <motion.div 
         initial    = {{ opacity: 0 }}

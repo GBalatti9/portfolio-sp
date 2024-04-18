@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { AboutPage, ContactPage, HomePage, ProyectPage, WorkPage } from "../pages";
+import { AboutPage, AdsPage, ContactPage, HomePage, ProyectPage, WorkPage } from "../pages";
 
 export const PortfolioRoutes = () => {
     const location = useLocation();
@@ -11,9 +11,10 @@ export const PortfolioRoutes = () => {
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<HomePage />} />
 
-                <Route path="work" element={<WorkPage />} />
+                <Route path="projects" element={<WorkPage />} />
+                <Route path="ads" element={<AdsPage />} />
 
-                <Route path="work/:workId" element={<ProyectPage />} />
+                <Route path="projects/:workId" element={<ProyectPage />} />
 
                 <Route path="about" element={<AboutPage />} />
                 <Route path="contact" element={<ContactPage />} />

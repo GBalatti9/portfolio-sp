@@ -1,14 +1,10 @@
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useFetchHook } from "../../hooks";
-import { LoadingSpinner, NavBar, ToggleMenuBtn } from "../../ui/components";
-import { Layout } from "../layout";
-import { WorkCard } from "../components";
-import { useEffect, useState } from "react";
+import { useFetchHook } from '../../hooks';
+import { LoadingSpinner, NavBar } from '../../ui/components'
+import { WorkCard } from '../components'
+import { Layout } from '../layout'
 
-
-export const WorkPage = () => {
-
+export const AdsPage = () => {
     const { documents, loading } = useFetchHook();
     
     return (

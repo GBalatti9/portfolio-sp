@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 
-let items = ['Work', 'About', 'Contact'];
+let items = ['Ads', 'Projects', 'About', 'Contact'];
 
-export const NavBar = () => {
+export const NavBar = ( ) => {
     const { pathname } = useLocation();
 
     // Esta funcion sirve para reemplazar dinámicamente la información del Navbar. Si el usuario se encuentra en la vista principal, es decir, la ruta '/', se le va a mostrar el NavBar original. Pero si se encuentra en About por ejemplo, 'About' va a ser reemplazado del NavBar por 'Home'.
@@ -18,7 +18,7 @@ export const NavBar = () => {
     }
 
     return (
-        <ul className="flex justify-around mt-5" id="navbar">
+        <ul className={`flex justify-around mt-5`} id="navbar">
         {
             newItems.map(( item ) => (
                 <Link key={item} className="text-2xl py-2" to={`/${ item.toLowerCase() }`}> { item } </Link>

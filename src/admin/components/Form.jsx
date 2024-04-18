@@ -40,7 +40,7 @@ export const Form = ({ onClick }) => {
     return (
         <>
             <LoadingSpinner loading = { loading }>
-                <form className="border border-white bg-white p-4 rounded-md shadow-lg mb-2 w-8/12 h-4/6" onSubmit = { handleSubmit }>
+                <form className="border border-white bg-white p-4 rounded-md shadow-lg mb-2 w-12/12 h-4/6" onSubmit = { handleSubmit }>
 
                         <div className="grid grid-cols-2 h-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
                             {
