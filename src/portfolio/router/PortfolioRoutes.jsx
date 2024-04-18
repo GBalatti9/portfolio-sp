@@ -11,7 +11,7 @@ export const PortfolioRoutes = () => {
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<HomePage />} />
 
-                <Route path="projects" element={<WorkPage />} />
+                <Route path="personal projects" element={<WorkPage />} />
                 <Route path="ads" element={<AdsPage />} />
 
                 <Route path="projects/:workId" element={<ProyectPage />} />

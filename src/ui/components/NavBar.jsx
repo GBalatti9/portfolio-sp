@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 
-let items = ['Ads', 'Projects', 'About', 'Contact'];
+let items = ['Ads', 'Personal Projects', 'About', 'Contact'];
 
 export const NavBar = ( ) => {
     const { pathname } = useLocation();

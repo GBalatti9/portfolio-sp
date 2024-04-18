@@ -32,7 +32,8 @@ export const Table = () => {
                                             <td className="px-6 py-4 font-medium whitespace-normal">{doc.description}</td>
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                                                 {
-                                                    doc.images.map((src) => (
+                                                    doc.images > 0 &&
+                                                    doc.images?.map((src) => (
                                                         <img src={src} alt={doc.name} key={src} width="100px" />
                                                     ))
                                                 }
@@ -40,8 +41,8 @@ export const Table = () => {
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                                                 {
                                                     Array.isArray(doc.videos) ? doc.videos.map((src) => (
-                                                        <video width="320" height="240" controls key={ src }>
-                                                            <source src="video.mp4" type="video/mp4" />
+                                                        <video className="w-full h-full object-cover" autoPlay muted playsInline key={ src }>
+                                                            <source src={src} type="video/mp4" />
                                                                 Tu navegador no soporta el elemento de video.
                                                         </video>
                                                     ))

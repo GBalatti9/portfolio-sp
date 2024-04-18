@@ -6,6 +6,7 @@ export const useForm = ( initialForm = {} ) => {
 
     const handleInputChange = ({ target }) => {
         const { name, value, checked, type} = target;
+        console.log({ name, value });
         setFormState({
             ...formState,
             [ name ]: type === 'checkbox' ? checked : value,

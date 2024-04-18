@@ -15,19 +15,18 @@ const formElements = [
 
 export const Form = ({ onClick }) => {
     const [ loading, setLoading ] = useState(false);
-    const [ status, setStatus ] = useState('Ok');
 
     const { formState, handleInputChange, handleResetForm } = useForm();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         handleResetForm();
+
         if (Object.values(formState).length === 0) return;
 
         setLoading(true);
         try {
-            const { status } = await startUploadingFirebase(formState);
-            setStatus( status );
+            await startUploadingFirebase(formState);
             handleResetForm();
         } catch (error) {
             throw new Error('Error en admin/components/Form: ', error);
@@ -52,6 +51,13 @@ export const Form = ({ onClick }) => {
                                 ))
                             }
                             <br />
+                            <div className="my-2">
+                                <select name="project" id="project" className="text-center border rounded-md" onChange={handleInputChange}>
+                                    <option value="Elegir" disabled selected>Tipo de proyecto</option>
+                                    <option value="ads">Ads</option>
+                                    <option value="personal-project">Personal Project</option>
+                                </select>
+                            </div>
                             <div className="flex justify-around p-4 col-span-2">
                                 <Button color = { "red" }  text = "Descartar" onClick = {onClick} setDisabled={`${loading ? 'disabled' : ''}`}/>
                                 <Button color = { "blue" } text = "Guardar"   setDisabled = {`${loading ? 'disabled' : ''}`}/>

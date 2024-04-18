@@ -7,7 +7,7 @@ export const uploadFirebase = async ( formData ) => {
 
     if(Object.values(formData).length === 0) return;
 
-    const { name, description, imgs, videos, visibility } = formData;
+    const { name, description, imgs, videos, visibility, project } = formData;
 
     const idName = name.toLowerCase().split(' ').join('-');
 
@@ -18,6 +18,7 @@ export const uploadFirebase = async ( formData ) => {
             images:      imgs.length === 0   ? 'No images' : imgs,
             videos:      videos.length === 0 ? 'No videos' : videos,
             visibility:  visibility,
+            project:     project.toLowerCase(),
         });
 
     } catch (error) {
