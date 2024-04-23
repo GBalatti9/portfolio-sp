@@ -14,6 +14,7 @@ export const AdsPage = () => {
             <LoadingSpinner loading={loading}>
                 <div className="sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-y-2 mt-4">
                 {
+                    ads.length > 0 &&
                     ads?.map(( doc, i ) => (
                         <WorkCard key={ doc.id } { ...doc } />
                     ))

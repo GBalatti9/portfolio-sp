@@ -32,23 +32,26 @@ export const AdminPage = () => {
         navigate('/');
     }
 
+    const navigateToHome = () => {
+        navigate('/');
+    }
+
     return (
         <>
         <LayoutAdmin>
             <ButtonsLayout>
                 <Button color={ "blue" } text="Agregar un elemento" onClick={ handleFormOpen }/>
                 <Button onClick={ handleLogout } color={ "blue" } text="Logout"/>
+                <Button onClick={ navigateToHome } color={ "blue" } text="Ir a home"/>
             </ButtonsLayout>
             {
                 formOpen 
                 ?
-                    <div className={`flex justify-center items-center h-full ${fadeOut ? "animate-fadeOut" : "animate-fadeIn"}`}>
+                <div className={`flex justify-center items-center h-full ${fadeOut ? "animate-fadeOut" : "animate-fadeIn"}`}>
                         <Form onClick = { handleFormClose }/>
                     </div>
                 : 
-                <div className="animate-fadeIn flex justify-center items-center">
-                    <Table />
-                </div>
+                <Table />
             }
         </LayoutAdmin>
         </>
