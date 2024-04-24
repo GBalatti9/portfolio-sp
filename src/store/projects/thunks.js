@@ -1,7 +1,6 @@
-import { deleteDocumentSync } from "../../helpers";
 import { getDocumentsFromFirebase } from "../../helpers/getDocumentsFromFirebase"
 import { removeDocumentFromFirebase } from "../../helpers/removeFirebase";
-import { setError, setItems, startLoading } from "./projectsSlice"
+import { setError, setItems, deleteDocument, startLoading } from "./projectsSlice"
 
 
 export const getDocuments = () => {
@@ -12,16 +11,18 @@ export const getDocuments = () => {
     }
 }
 
-export const deleteDocument = ( documents, name ) => {
+export const startDeletingDocument = ( documents, id ) => {
     return async ( dispatch ) => {
         console.log('click');
         dispatch(startLoading());
-        const resp = await removeDocumentFromFirebase(name);
+        const resp = await removeDocumentFromFirebase(id);
         // console.log({ ok });
         console.log({ resp });
-        if ( resp.error ) dispatch(setError('No se pudo eliminar'))
-        if ( resp.ok    ) dispatch(setError('No se pudo eliminar'))
-        const newDocs = deleteDocumentSync( documents, name );
-        dispatch( deleteDocument(newDocs) )
+        if ( resp.error ) {
+            return dispatch(setError('No se pudo eliminar'))
+        }
+        let { documents } = await getDocumentsFromFirebase();
+        console.log({ documents });
+        dispatch(deleteDocument( documents ));
     }
 }

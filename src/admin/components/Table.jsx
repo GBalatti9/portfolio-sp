@@ -3,7 +3,7 @@ import { LoadingSpinner } from "../../ui/components";
 import { Button } from "./Button";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDocuments, deleteDocument } from "../../store/projects/thunks";
+import { getDocuments, startDeletingDocument } from "../../store/projects/thunks";
 
 
 const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility', 'Delete', 'Edit']
@@ -34,7 +34,7 @@ export const Table = () => {
                                 {
                                     documents?.length > 0 &&
                                     documents.map((doc) => (
-                                        <>
+
                                         <tr className="border-b border-neutral-200 bg-white" key={doc.id}>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium text-black">{doc.id}</td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.name}</td>
@@ -61,7 +61,7 @@ export const Table = () => {
                                                     </td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.visibility ? 'True' : 'False'}</td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">
-                                                        <Button text={'X'} color={'blue'} onClick={ () => dispatch(deleteDocument( documents, doc.name )) }/>
+                                                        <Button text={'X'} color={'blue'} onClick={ () => dispatch(startDeletingDocument( documents, doc.id )) }/>
                                                     </td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">
                                                         <Button text={'Edit'} color={'blue'} onClick={ () => setEdit( !edit ) }/>
@@ -95,7 +95,7 @@ export const Table = () => {
                                                 </>
                                             } */}
                                         </tr>
-                                        </>
+
                                     ))
                                 }
                             </tbody>

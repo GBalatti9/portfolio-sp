@@ -23,17 +23,22 @@ export const projectsSlice = createSlice({
             state.isLoading = false;
         },
         setError: ( state, action ) => {
+            console.log({ action });
             state.error = action.payload;
             state.isLoading = false;
         },
         deleteDocument: ( state, action ) => {
             console.log({ action });
-            state.projects.push(...action.payload);
+            state.projects = action.payload.documents;
             state.isLoading = false;
+        },
+        endLoading: ( state ) => {
+            state.isLoading = false;
+            state.error = null;
         }
     }
 });
 
-export const { startLoading, addNewItem, setItems, setError } = projectsSlice.actions;
+export const { startLoading, addNewItem, setItems, setError, endLoading, deleteDocument } = projectsSlice.actions;
 
 export const projectsReducer = projectsSlice.reducer;
