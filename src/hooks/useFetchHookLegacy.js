@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { getDocumentsFromFirebase } from "../helpers/getDocumentsFromFirebase";
 import { filterDocuments } from "../helpers/filterDocuments";
 import { deleteItemFirebase } from "../admin/helpers";
+import { useDispatch } from "react-redux";
+import { getDocs } from "../store/projects/thunks";
+import { setError, startLoading } from "../store/projects/projectsSlice";
 
 
 export const useFetchHook = () => {
 
+    const dispatch = useDispatch();
+
+    
     const [ docs, setDocs ]       = useState([]);
     const [ loading, setLoading ] = useState(false);
     
@@ -19,7 +25,7 @@ export const useFetchHook = () => {
         }
         setLoading(false);
     }
-
+    
     const getDocuments = async () => {
         setLoading(true);
         const { documents } = await getDocumentsFromFirebase();
@@ -27,6 +33,7 @@ export const useFetchHook = () => {
         setLoading(false);
     };
     
+
     useEffect(() => {
         // La primera vez que el usuario ingresa a WorkPage se van a cargar los documentos desde la base de datos. Es decir, se va a ejecutar getDocuments(). Ahora bien, cuando se carguen los documentos por primera vez, se van a guardar en el localStorage y de esa manera la segunda vez que se carguen los documentos no se va a llamar nuevamente a la base de datos. FIJARSE COMO HACER PARA QUE SE ACTUALICE CUANDO CAMBIE LOS DOCUMENTOS PORQUE DE ESTA MANERA NUNCA MAS VUELVE A LLAMARSE A LA BASE DE DATOS Y NO SE SABE SI SE AGREGÓ UN ELEMENTO.
 
@@ -38,7 +45,7 @@ export const useFetchHook = () => {
             setDocs(docsFromLS);
         }
 
-    }, [ ]);
+    }, []);
 
     return { 
         documents: docs, 

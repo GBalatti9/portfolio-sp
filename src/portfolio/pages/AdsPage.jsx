@@ -1,12 +1,13 @@
 
-import { useFetchHook } from '../../hooks';
+// import { useFetchHook } from '../../hooks';
 import { LoadingSpinner, NavBar } from '../../ui/components'
 import { WorkCard } from '../components'
 import { Layout } from '../layout'
 
 export const AdsPage = () => {
 
-    const { ads, loading } = useFetchHook();
+    // const { ads, loading } = useFetchHook();
+    const { projects, isLoading: loading } = useSelector(( state ) => state.projects);
     
     return (
         <Layout overflow='auto'>

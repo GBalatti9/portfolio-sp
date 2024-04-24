@@ -1,8 +1,9 @@
 
 import { LoadingSpinner } from "../../ui/components";
-import { useFetchHook } from "../../hooks";
 import { Button } from "./Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDocuments } from "../../store/projects/thunks";
 
 
 const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility', 'Delete', 'Edit']
@@ -10,7 +11,12 @@ const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility
 export const Table = () => {
     const [ edit, setEdit ] = useState(false);
 
-    const { documents, loading, deleteDocument } = useFetchHook();
+    const dispatch = useDispatch();
+    const { isLoading: loading, projects: documents, error } = useSelector(( state ) => state.projects);
+
+    useEffect(() => {
+        dispatch(getDocuments());
+    }, [])
 
     return (
         <LoadingSpinner loading = { loading }>
