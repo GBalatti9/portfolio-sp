@@ -1,12 +1,10 @@
 
 import { LoadingSpinner } from "../../ui/components";
-import { Button } from "./Button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDocuments, startDeletingDocument } from "../../store/projects/thunks";
+import { getDocuments } from "../../store/projects/thunks";
+import { Link } from "react-router-dom";
 
-
-// const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility', 'Delete', 'Edit']
 
 export const Table = () => {
 
@@ -24,27 +22,27 @@ export const Table = () => {
             <div className="flex justify-around my-5">
                 {
                     !error ?
-                    projects.map((project) => (
-                        <div className="border border-slate-500 rounded-lg shadow-md w-3/12 p-2 text-center cursor-pointer flex flex-col justify-center">
-                            <h4>Name: {project.name}</h4>
-                            {
-                                project.images !== 'No images' &&
-                                <div className="border border-slate-500 h-44 my-2 rounded overflow-hidden">
-                                    <img src={project.images} className="w-full h-full object-cover" alt={project.images} />
-                                </div>
-                            }
-                            {
-                                project.videos !== 'No videos' &&
-                                <div className="border border-slate-500 h-44 rounded">
-                                    <video className="w-full h-full object-cover" autoPlay muted playsInline loop> <source src={project.videos[0] || ''} type="video/mp4" name="video" />  </video>
-                                </div>
-                            }
-                            <p>Description: {project.description}</p>
-                            <p>Visibility: {project.visibility ? 'True' : 'False'}</p>
-                            <p>Type: {project.project}</p>
-                        </div>
-                    ))
-                    : <p>{ error }</p>
+                        projects.map((project) => (
+                            <Link to={`edit/${project.id}`} key={project.id} className="border border-slate-500 rounded-lg shadow-md w-12/12 p-2 text-center cursor-pointer flex flex-col justify-center">
+                                <h4>Name: {project.name}</h4>
+                                {
+                                    project.images !== 'No images' &&
+                                    <div className="border border-slate-500 h-44 my-2 rounded overflow-hidden">
+                                        <img src={project.images} className="w-full h-full object-cover" alt={project.images} />
+                                    </div>
+                                }
+                                {
+                                    project.videos !== 'No videos' &&
+                                    <div className="border border-slate-500 h-44 rounded">
+                                        <video className="w-full h-full object-cover" autoPlay muted playsInline loop> <source src={project.videos[0] || ''} type="video/mp4" name="video" />  </video>
+                                    </div>
+                                }
+                                <p>Description: {project.description}</p>
+                                <p>Visibility: {project.visibility ? 'True' : 'False'}</p>
+                                <p>Type: {project.project}</p>
+                            </Link>
+                        ))
+                        : <p>{error}</p>
                 }
             </div>
         </LoadingSpinner>
