@@ -47,7 +47,7 @@ export const AdminPage = () => {
             {
                 formOpen 
                 ?
-                <div className={`flex justify-center items-center h-full ${fadeOut ? "animate-fadeOut" : "animate-fadeIn"}`}>
+                <div className={`${fadeOut ? "animate-fadeOut" : "animate-fadeIn"}`}>
                         <Form onClick = { handleFormClose }/>
                     </div>
                 : 

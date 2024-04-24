@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 
-let items = ['Ads', 'Personal Projects', 'About', 'Contact'];
+let items = ['Ads', 'Projects', 'About', 'Contact'];
 
 export const NavBar = ( ) => {
     const { pathname } = useLocation();
 
     // Esta funcion sirve para reemplazar dinámicamente la información del Navbar. Si el usuario se encuentra en la vista principal, es decir, la ruta '/', se le va a mostrar el NavBar original. Pero si se encuentra en About por ejemplo, 'About' va a ser reemplazado del NavBar por 'Home'.
     const actualPage = pathname.split('/')[1]
+    console.log({ actualPage });
 
     let newItems = [...items];
 

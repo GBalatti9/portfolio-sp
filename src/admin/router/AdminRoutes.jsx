@@ -8,7 +8,7 @@ export const AdminRoutes = () => {
         <AnimatePresence>
             <Routes>
                 <Route path="/" element={<AdminPage />} />
-                <Route path="/edit/:adminProjectId" exact={true} element={<EditPage />} />
+                <Route path="/edit/:adminProjectId" element={<EditPage />} />
             </Routes>
         </AnimatePresence>
     )

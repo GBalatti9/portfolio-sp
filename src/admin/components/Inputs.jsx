@@ -1,14 +1,15 @@
 import { useRef, useState } from "react"
 
-export const Inputs = ({ name, type, handleInputChange }) => {
+export const Inputs = ({ name, type, handleInputChange, values }) => {
 
-    const [ files, setFiles ] = useState([]);
+    const [files, setFiles] = useState([]);
 
+    console.log("VALUES EN INPUTS:", { values });
     const fileInputRef = useRef();
 
-    const handleFilesUpload = ( e ) => {
+    const handleFilesUpload = (e) => {
         const files = Array.from(e.target.files);
-        setFiles( files );
+        setFiles(files);
         const event = { target: { name: e.target.name, value: files } }
         handleInputChange(event);
     }
@@ -17,46 +18,80 @@ export const Inputs = ({ name, type, handleInputChange }) => {
         <>
             {
                 name === 'Descripción' ?
-                    <>
-                        <label    htmlFor = { name } className = "col-span-2 mb-1 font-medium">{ name }</label>
-                        <textarea type    = "text"   className = "border col-span-2 rounded-md p-2" cols="30" rows="5" id={ name } name="description" onChange={ handleInputChange }/>
-                    </>
+                    <div className="col-span-2 font-medium my-2">
+                        <label htmlFor={name} >{name}</label>
+                        <br />
+                        <textarea
+                            type="text"
+                            className="border border-slate-300 w-full rounded-md p-2"
+                            cols="30"
+                            rows="10"
+                            id={name}
+                            name="description"
+                            onChange={handleInputChange}
+                            value={values.description}
+                        />
+                    </div>
                     :
                     name === 'Visibilidad' ?
-                        <>
-                            <div className="mt-4">
-                                <label htmlFor = { name } className = "col-span-1 mr-2 font-medium">{name}</label>
-                                <input type    = { type } className = "col-span-1 rounded-md p-2" name="visibility" onChange={ handleInputChange }/>
-                            </div>
-                        </>
+                        <div className="mt-4 text-center flex justify-center items-center">
+                            <label htmlFor={name} className="font-medium">{name}</label>
+                            <input
+                                type={type}
+                                className="rounded-md p-2 ml-1"
+                                name="visibility"
+                                onChange={handleInputChange}
+                                checked={values.visibility}
+                            />
+                        </div>
                         :
-                        name === 'Nombre' ?
-                            <>
-                                <label htmlFor = { name }  className = "font-medium">{ name }</label>
-                                <input type    = { type }  className = "border col-span-2 rounded-md p-2" onChange={ handleInputChange } name="name"/>
-                            </>
-                            :
-                            <div className="mt-2 flex items-center flex-col">
-                                <label htmlFor = { name } className = "font-medium"> { name }</label>
-                                <div className="h-6">
-                                    { files?.length === 1 ? <p>{ files.length } archivo seleccionado</p> : files?.length > 0 ? <p>{ files.length } archivos seleccionados</p> : <p className="italic">Ningún archivo seleccionado</p> }
-                                </div>
-                                <img 
-                                    src       = "./icons8-subir-50.png" 
-                                    alt       = "Cargar archivos" 
-                                    className = "cursor-pointer sm:w-1/12 transition-transform duration-300 hover:scale-110 mt-1"
-                                    onClick   = { () => fileInputRef.current.click() }
+                        name ==='Nombre' ?
+                            <div className="font-medium my-2 col-span-2">
+                                <label htmlFor={name}>{name}</label>
+                                <br />
+                                <input
+                                    type={type}
+                                    className="border border-slate-300 w-full rounded-md p-2"
+                                    onChange={handleInputChange}
+                                    name="name"
+                                    value={values.name}
                                 />
-                                <input 
-                                    ref       = { fileInputRef } 
-                                    type      = { type } 
-                                    accept    = {`${ name === 'Imágenes' ? 'image/*' : 'video/*' }`}
-                                    className = "rounded-md p-2 hidden" 
-                                    multiple
-                                    name      = { name }
-                                    onChange  = { handleFilesUpload } 
-                                    />
                             </div>
+                            :
+                            name === 'project' ?
+                                <div className="mt-2 mx-auto shadow-md rounded-md border">
+                                    <select name="project" id="project" className="text-center px-2 py-2 rounded" onChange={handleInputChange}>
+                                        <option value="Elegir" disabled selected>Tipo de proyecto</option>
+                                        <option value="ads">Ads</option>
+                                        <option value="personal-project">Personal Project</option>
+                                    </select>
+                                </div>
+                                :
+                                <div className="mt-2 flex items-center flex-col">
+                                    <label htmlFor={name} className="font-medium"> {name}</label>
+                                    <div className="h-6">
+                                        {files?.length === 1 ? <p>{files.length} archivo seleccionado</p> : files?.length > 0 ? <p>{files.length} archivos seleccionados</p> : <p className="italic">Ningún archivo seleccionado</p>}
+                                    </div>
+                                    <div
+                                        className={`border border-slate-500 px-2 rounded-md  ${ files.length > 0 ? 'opacity-50' : 'hover:cursor-pointer hover:bg-slate-400 hover:text-white transition-all hover:shadow-lg' }`}
+                                        disabled={ files.length > 0 }
+                                        onClick={() => {
+                                            if (files.length === 0) {
+                                                fileInputRef.current.click();
+                                            }
+                                        }}>
+                                            Seleccionar archivos
+                                    </div>
+                                    <input
+                                        ref={fileInputRef}
+                                        type={type}
+                                        accept={`${name === 'Imágenes' ? 'image/*' : 'video/*'}`}
+                                        className="rounded-md p-2 hidden"
+                                        multiple
+                                        name={name}
+                                        onChange={handleFilesUpload}
+                                    />
+                                </div>
             }
         </>
     )

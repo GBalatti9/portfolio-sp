@@ -11,10 +11,12 @@ const formElements = [
     { name: 'Imágenes', type: 'file' },
     { name: 'Videos', type: 'file' },
     { name: 'Visibilidad', type: 'checkbox' },
+    { name: 'project', type: 'select' },
 ]
 
-export const Form = ({ onClick }) => {
-    const [ loading, setLoading ] = useState(false);
+export const Form = ({ onClick, values = {} }) => {
+    console.log({ values });
+    const [loading, setLoading] = useState(false);
 
     const { formState, handleInputChange, handleResetForm } = useForm();
 
@@ -31,43 +33,51 @@ export const Form = ({ onClick }) => {
             handleResetForm();
         } catch (error) {
             throw new Error('Error en admin/components/Form: ', error);
-        } finally{
+        } finally {
             setLoading(false);
         }
 
     }
 
     return (
-        <>
-            <LoadingSpinner loading = { loading }>
-                <form className="border border-white bg-white p-4 rounded-md shadow-lg mb-2 w-12/12 h-4/6" onSubmit = { handleSubmit }>
-
-                        <div className="grid grid-cols-2 h-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-                            {
-                                formElements.map((element, i) => (
-                                    <Inputs {...element}
-                                        key={element + i}
-                                        handleInputChange={handleInputChange}
-                                    />
-                                ))
-                            }
-                            <br />
-                            <div className="my-2">
-                                <select name="project" id="project" className="text-center border rounded-md" onChange={handleInputChange}>
-                                    <option value="Elegir" disabled selected>Tipo de proyecto</option>
-                                    <option value="ads">Ads</option>
-                                    <option value="personal-project">Personal Project</option>
-                                </select>
-                            </div>
-                            <div className="flex justify-around p-4 col-span-2">
-                                <Button color = { "red" }  text = "Descartar" onClick = {onClick} setDisabled={`${loading ? 'disabled' : ''}`}/>
-                                <Button color = { "blue" } text = "Guardar"   setDisabled = {`${loading ? 'disabled' : ''}`}/>
-                            </div>
+        <LoadingSpinner loading={loading} >
+            <form className="bg-white px-4 py-2 rounded-md shadow-lg" onSubmit={handleSubmit}>
+                <div className="grid grid-cols-2 h-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+                    {
+                        formElements.map((element, i) => (
+                            <Inputs {...element}
+                                key={element + i}
+                                handleInputChange={handleInputChange}
+                                values={values}
+                            />
+                        ))
+                    }
+                    <br />
+                    <br />
+                    {Array.isArray(values.images) ?
+                        <div>
+                            {values.images.map((image) => (
+                                <img src={image} alt="" />
+                            ))}
                         </div>
-
-                </form>
-            </LoadingSpinner>
-        </>
-
+                        : <p> {values.images} </p>}
+                    <br />
+                    {Array.isArray(values.videos) ?
+                        <div>
+                            {values.videos.map((video) => (
+                                <img src={video} alt="" />
+                            ))}
+                        </div>
+                        : <p> {values.videos} </p>}
+                    <div className="flex justify-around col-span-2">
+                        <Button color={"red"} text="Descartar" onClick={onClick} setDisabled={`${loading ? 'disabled' : ''}`} />
+                        <Button color={"blue"} text="Guardar" setDisabled={`${loading ? 'disabled' : ''}`} />
+                    </div>
+                </div>
+            </form>
+        </LoadingSpinner>
     )
 }
+
+{/* <LoadingSpinner loading = { loading }> */ }
+{/* </LoadingSpinner> */ }
