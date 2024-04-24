@@ -3,7 +3,7 @@ import { LoadingSpinner } from "../../ui/components";
 import { Button } from "./Button";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDocuments } from "../../store/projects/thunks";
+import { getDocuments, deleteDocument } from "../../store/projects/thunks";
 
 
 const tableTitles = ['#', 'Name', 'Description', 'Images', 'Videos', 'Visibility', 'Delete', 'Edit']
@@ -13,6 +13,7 @@ export const Table = () => {
 
     const dispatch = useDispatch();
     const { isLoading: loading, projects: documents, error } = useSelector(( state ) => state.projects);
+    console.log({ documents });
 
     useEffect(() => {
         dispatch(getDocuments());
@@ -35,10 +36,7 @@ export const Table = () => {
                                     documents.map((doc) => (
                                         <>
                                         <tr className="border-b border-neutral-200 bg-white" key={doc.id}>
-                                            {
-                                                !edit ? 
-                                                <>
-                                                    <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.id}</td>
+                                                    <td className="whitespace-nowrap px-6 py-4 font-medium text-black">{doc.id}</td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.name}</td>
                                                     <td className="px-6 py-4 font-medium whitespace-normal">{doc.description}</td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">
@@ -63,13 +61,12 @@ export const Table = () => {
                                                     </td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">{doc.visibility ? 'True' : 'False'}</td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">
-                                                        <Button text={'X'} color={'blue'} onClick={ () => deleteDocument( doc.id ) }/>
+                                                        <Button text={'X'} color={'blue'} onClick={ () => dispatch(deleteDocument( documents, doc.name )) }/>
                                                     </td>
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">
                                                         <Button text={'Edit'} color={'blue'} onClick={ () => setEdit( !edit ) }/>
                                                     </td>
-                                                </>
-                                                : 
+                                                {/* : 
                                                 <>
                                                     <td className="overflow-hidden">
                                                         <input type="text" className="outline-none py-3 px-2" value={ doc.id } />
@@ -96,7 +93,7 @@ export const Table = () => {
                                                         <Button text={'Guardar'} color={'blue'} onClick={ () => setEdit( !edit ) }/>
                                                     </td>
                                                 </>
-                                            }
+                                            } */}
                                         </tr>
                                         </>
                                     ))

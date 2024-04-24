@@ -19,11 +19,16 @@ export const projectsSlice = createSlice({
             state.isLoading = false;
         },
         setItems: ( state, action ) => {
-            state.projects.push(action.payload);
+            state.projects = action.payload;
             state.isLoading = false;
         },
         setError: ( state, action ) => {
             state.error = action.payload;
+            state.isLoading = false;
+        },
+        deleteDocument: ( state, action ) => {
+            console.log({ action });
+            state.projects.push(...action.payload);
             state.isLoading = false;
         }
     }
