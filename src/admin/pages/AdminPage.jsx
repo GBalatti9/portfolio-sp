@@ -4,10 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { ButtonsLayout, LayoutAdmin } from "../layout";
 import { Button, Form, Table } from "../components";
 import '../../index.css';
+import { useForm } from "../../auth/hooks";
+
+const initialForm = {
+    name: '',
+    description: '',
+    images: [] || '',
+    videos: [] || '',
+    visibility: false,
+}
 
 export const AdminPage = () => {
     const [ formOpen, setFormOpen ] = useState(false);
     const [ fadeOut, setFadeOut ]   = useState(false);
+
+    const { formState, handleInputChange } = useForm(initialForm);
 
     const handleFormOpen = () => {
         setTimeout(() => {
@@ -48,7 +59,7 @@ export const AdminPage = () => {
                 formOpen 
                 ?
                 <div className={`${fadeOut ? "animate-fadeOut" : "animate-fadeIn"}`}>
-                        <Form onClick = { handleFormClose }/>
+                        <Form onClick = { handleFormClose } formState={ formState } handleInputChange = { handleInputChange }/>
                     </div>
                 : 
                 <Table />

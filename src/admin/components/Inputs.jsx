@@ -3,8 +3,7 @@ import { useRef, useState } from "react"
 export const Inputs = ({ name, type, handleInputChange, values }) => {
 
     const [files, setFiles] = useState([]);
-
-    console.log("VALUES EN INPUTS:", { values });
+    console.log({ values });
     const fileInputRef = useRef();
 
     const handleFilesUpload = (e) => {
@@ -17,7 +16,7 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
     return (
         <>
             {
-                name === 'Descripción' ?
+                name === 'description' ?
                     <div className="col-span-2 font-medium my-2">
                         <label htmlFor={name} >{name}</label>
                         <br />
@@ -33,7 +32,7 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                         />
                     </div>
                     :
-                    name === 'Visibilidad' ?
+                    name === 'visibility' ?
                         <div className="mt-4 text-center flex justify-center items-center">
                             <label htmlFor={name} className="font-medium">{name}</label>
                             <input
@@ -45,7 +44,7 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                             />
                         </div>
                         :
-                        name ==='Nombre' ?
+                        name ==='name' ?
                             <div className="font-medium my-2 col-span-2">
                                 <label htmlFor={name}>{name}</label>
                                 <br />
@@ -61,7 +60,7 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                             name === 'project' ?
                                 <div className="mt-2 mx-auto shadow-md rounded-md border">
                                     <select name="project" id="project" className="text-center px-2 py-2 rounded" onChange={handleInputChange}>
-                                        <option value="Elegir" disabled selected>Tipo de proyecto</option>
+                                        <option value="Elegir" disabled defaultValue={'Tipo de proyecto'}>Tipo de proyecto</option>
                                         <option value="ads">Ads</option>
                                         <option value="personal-project">Personal Project</option>
                                     </select>
@@ -70,7 +69,7 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                                 <div className="mt-2 flex items-center flex-col">
                                     <label htmlFor={name} className="font-medium"> {name}</label>
                                     <div className="h-6">
-                                        {files?.length === 1 ? <p>{files.length} archivo seleccionado</p> : files?.length > 0 ? <p>{files.length} archivos seleccionados</p> : <p className="italic">Ningún archivo seleccionado</p>}
+                                        {files?.length === 1 ? <p>{files.length} archivo seleccionado</p> : files?.length > 0 ? <p>{files.length} archivos seleccionados</p> : <p className="italic">ningún archivo seleccionado</p>}
                                     </div>
                                     <div
                                         className={`border border-slate-500 px-2 rounded-md  ${ files.length > 0 ? 'opacity-50' : 'hover:cursor-pointer hover:bg-slate-400 hover:text-white transition-all hover:shadow-lg' }`}
