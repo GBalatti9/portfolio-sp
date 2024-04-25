@@ -15,8 +15,8 @@ export const uploadFirebase = async ( formData ) => {
         await setDoc(doc(db, 'portfolio', idName), {
             name:        name,
             description: description,
-            images:      images.length === 0   ? 'No images' : imgs,
-            videos:      videos.length === 0 ? 'No videos' : videos,
+            images:      images?.length === 0   ? 'No images' : images,
+            videos:      videos?.length === 0 ? 'No videos' : videos,
             visibility:  visibility,
             project:     project.toLowerCase(),
         });

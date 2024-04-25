@@ -29,7 +29,7 @@ export const projectsSlice = createSlice({
         },
         deleteDocument: ( state, action ) => {
             console.log({ action });
-            state.projects = action.payload.documents;
+            state.projects = action.payload;
             state.isLoading = false;
         },
         endLoading: ( state ) => {

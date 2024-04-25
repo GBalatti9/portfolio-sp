@@ -1,3 +1,4 @@
+import { compareDocuments } from "../../helpers";
 import { getDocumentsFromFirebase } from "../../helpers/getDocumentsFromFirebase"
 import { removeDocumentFromFirebase } from "../../helpers/removeFirebase";
 import { setError, setItems, deleteDocument, startLoading } from "./projectsSlice"
@@ -6,12 +7,18 @@ import { setError, setItems, deleteDocument, startLoading } from "./projectsSlic
 export const getDocuments = () => {
     return async ( dispatch ) => {
         dispatch(startLoading());
-        const { documents } = await getDocumentsFromFirebase();
-        dispatch(setItems(documents))
+        const documentsFromLs = JSON.parse(localStorage.getItem('documents'));
+        if (!documentsFromLs) {
+            const { documents } = await getDocumentsFromFirebase();
+            localStorage.setItem('documents', JSON.stringify(documents));
+            dispatch(setItems( documents ));
+        } else {
+            dispatch(setItems( documentsFromLs ));
+        }
     }
 }
 
-export const startDeletingDocument = ( documents, id ) => {
+export const startDeletingDocument = ( id ) => {
     return async ( dispatch ) => {
         console.log('click');
         dispatch(startLoading());
@@ -22,6 +29,7 @@ export const startDeletingDocument = ( documents, id ) => {
             return dispatch(setError('No se pudo eliminar'))
         }
         let { documents } = await getDocumentsFromFirebase();
+        localStorage.setItem('documents', JSON.stringify(documents));
         console.log({ documents });
         dispatch(deleteDocument( documents ));
     }
