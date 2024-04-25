@@ -8,7 +8,6 @@ export const getDocuments = () => {
     return async ( dispatch ) => {
         dispatch(startLoading());
         const documentsFromLs = JSON.parse(localStorage.getItem('documents'));
-        console.log({ documentsFromLs });
         if (!documentsFromLs) {
             const { documents } = await getDocumentsFromFirebase();
             localStorage.setItem('documents', JSON.stringify(documents));
@@ -31,7 +30,6 @@ export const startDeletingDocument = ( id ) => {
         }
         let { documents } = await getDocumentsFromFirebase();
         localStorage.setItem('documents', JSON.stringify(documents));
-        console.log({ documents });
         dispatch(deleteDocument( documents ));
     }
 }

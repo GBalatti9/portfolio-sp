@@ -21,14 +21,14 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                         <label htmlFor={name} >{name}</label>
                         <br />
                         <textarea
-                            type="text"
-                            className="border border-slate-300 w-full rounded-md p-2"
-                            cols="30"
-                            rows="10"
-                            id={name}
-                            name="description"
-                            onChange={handleInputChange}
-                            value={values.description}
+                            type      = "text"
+                            className = "border border-slate-300 w-full rounded-md p-2"
+                            cols      = "30"
+                            rows      = "10"
+                            id        = { name }
+                            name      = "description"
+                            onChange  = { handleInputChange }
+                            value     = { values.description }
                         />
                     </div>
                     :
@@ -36,11 +36,11 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                         <div className="mt-4 text-center flex justify-center items-center">
                             <label htmlFor={name} className="font-medium">{name}</label>
                             <input
-                                type={type}
-                                className="rounded-md p-2 ml-1"
-                                name="visibility"
-                                onChange={handleInputChange}
-                                checked={values.visibility}
+                                type      = { type }
+                                className = "rounded-md p-2 ml-1"
+                                name      = "visibility"
+                                onChange  = { handleInputChange }
+                                checked   = { values.visibility }
                             />
                         </div>
                         :
@@ -49,20 +49,20 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                                 <label htmlFor={name}>{name}</label>
                                 <br />
                                 <input
-                                    type={type}
-                                    className="border border-slate-300 w-full rounded-md p-2"
-                                    onChange={handleInputChange}
-                                    name="name"
-                                    value={values.name}
+                                    type      = { type }
+                                    className = "border border-slate-300 w-full rounded-md p-2"
+                                    onChange  = { handleInputChange }
+                                    name      = "name"
+                                    value     = { values.name }
                                 />
                             </div>
                             :
                             name === 'project' ?
                                 <div className="mt-2 mx-auto shadow-md rounded-md border">
                                     <select name="project" id="project" className="text-center px-2 py-2 rounded" onChange={handleInputChange}>
-                                        <option value="Elegir" disabled defaultValue={'Tipo de proyecto'}>Tipo de proyecto</option>
-                                        <option value="ads">Ads</option>
-                                        <option value="personal-project">Personal Project</option>
+                                        <option value = "Elegir" disabled defaultValue={'Tipo de proyecto'}>Tipo de proyecto</option>
+                                        <option value = "ads">Ads</option>
+                                        <option value = "personal-project">Personal Project</option>
                                     </select>
                                 </div>
                                 :
@@ -82,13 +82,13 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                                             Seleccionar archivos
                                     </div>
                                     <input
-                                        ref={fileInputRef}
-                                        type={type}
-                                        accept={`${name === 'Imágenes' ? 'image/*' : 'video/*'}`}
-                                        className="rounded-md p-2 hidden"
+                                        ref       = { fileInputRef }
+                                        type      = { type }
+                                        accept    = {`${name === 'images' ? 'image/*' : 'video/*'}`}
+                                        className = "rounded-md p-2 hidden"
                                         multiple
-                                        name={name}
-                                        onChange={handleFilesUpload}
+                                        name      = { name }
+                                        onChange  = { handleFilesUpload }
                                     />
                                 </div>
             }

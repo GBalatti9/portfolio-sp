@@ -8,6 +8,7 @@ export const uploadFirebase = async ( formData ) => {
     if(Object.values(formData).length === 0) return;
 
     const { name, description, images, videos, visibility, project } = formData;
+    console.log({ formData });
     console.log({ name });
     const idName = name.toLowerCase().split(' ').join('-');
     console.log({ idName });

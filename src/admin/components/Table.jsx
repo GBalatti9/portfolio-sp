@@ -14,7 +14,6 @@ export const Table = () => {
 
     const dispatch = useDispatch();
     const { isLoading: loading, projects, error } = useSelector((state) => state.projects);
-    console.log({ newData });
     
     const handlePage = () => {
         localStorage.removeItem('documents');
@@ -34,7 +33,7 @@ export const Table = () => {
 
     const deleteDoc = (e, id) => {
         e.preventDefault();
-        console.log({ id });
+        setHoverIndex(null);
         dispatch(startDeletingDocument( id ));
         setNewData(false);
     }

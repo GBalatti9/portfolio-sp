@@ -27,7 +27,8 @@ export const AdminPage = () => {
         }, 400);
     }
 
-    const handleFormClose = () => {
+    const handleFormClose = (e) => {
+        e.preventDefault();
         setFadeOut(true);
         setTimeout(() => {
             setFormOpen(false);
