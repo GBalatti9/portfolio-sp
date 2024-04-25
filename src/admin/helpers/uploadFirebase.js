@@ -10,6 +10,7 @@ export const uploadFirebase = async ( formData ) => {
     const { name, description, images, videos, visibility, project } = formData;
     console.log({ name });
     const idName = name.toLowerCase().split(' ').join('-');
+    console.log({ idName });
 
     try {
         await setDoc(doc(db, 'portfolio', idName), {

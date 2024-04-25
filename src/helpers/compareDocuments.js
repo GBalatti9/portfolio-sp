@@ -7,6 +7,8 @@ export const compareDocuments = async () => {
     console.log('Ejecutado compare documents');
     const documentsFromLS = JSON.parse(localStorage.getItem('documents'));
     const { documents: documentsFromFirebase } = await getDocumentsFromFirebase();
+    console.log("DOCS: ", documentsFromFirebase, documentsFromLS );
+    console.log("LENGTH: ", documentsFromFirebase.length , documentsFromLS.length );
 
     if (!documentsFromLS) {
         return true;
