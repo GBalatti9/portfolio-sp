@@ -19,7 +19,7 @@ export const Table = () => {
     return (
         <LoadingSpinner loading={loading}>
 
-            <div className="flex justify-around my-5">
+            <div className="grid grid-cols-3">
                 {
                     !error ?
                         projects.map((project) => (

@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getDocuments } from '../../store/projects/thunks';
 
 export const Layout = ({ children, overflow }) => {
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getDocuments());
+    },[])
 
     return (
         <motion.div 

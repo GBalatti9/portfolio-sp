@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 import { LoadingSpinner, NavBar } from '../../ui/components'
 import { WorkCard } from '../components'
 import { Layout } from '../layout'
+import { filterDocuments } from '../../helpers/filterDocuments';
 
 export const AdsPage = () => {
 
     // const { ads, loading } = useFetchHook();
-    const { projects: ads, isLoading: loading } = useSelector(( state ) => state.projects);
-    console.log({ ads });
+    const { projects, isLoading: loading } = useSelector(( state ) => state.projects);
+    const ads = filterDocuments( projects, 'ads' );
     return (
         <Layout overflow='auto'>
             <NavBar />
