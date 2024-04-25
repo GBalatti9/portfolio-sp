@@ -14,7 +14,6 @@ export const Table = () => {
 
     const dispatch = useDispatch();
     const { isLoading: loading, projects, error } = useSelector((state) => state.projects);
-    
     const handlePage = () => {
         localStorage.removeItem('documents');
         window.location.reload();
@@ -39,6 +38,9 @@ export const Table = () => {
     }
     return (
         <LoadingSpinner loading={loading}>
+            {
+                projects?.length === 0 && <div className="h-80 flex items-end justify-center"><p className="text-center">No hay elementos</p></div>
+            }
             { newData && 
             <div className="absolute top-0 right-0 m-2">
                 <p className="italic">Hay nueva informacion.</p>

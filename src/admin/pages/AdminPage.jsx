@@ -5,6 +5,7 @@ import { ButtonsLayout, LayoutAdmin } from "../layout";
 import { Button, Form, Table } from "../components";
 import '../../index.css';
 import { useForm } from "../../auth/hooks";
+import { useSelector } from "react-redux";
 
 const initialForm = {
     name: '',
@@ -17,7 +18,7 @@ const initialForm = {
 export const AdminPage = () => {
     const [ formOpen, setFormOpen ] = useState(false);
     const [ fadeOut, setFadeOut ]   = useState(false);
-
+    
     const { formState, handleInputChange, handleResetForm } = useForm(initialForm);
 
     const handleFormOpen = () => {
