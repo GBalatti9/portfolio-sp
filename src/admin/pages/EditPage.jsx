@@ -13,42 +13,22 @@ export const EditPage = () => {
 
     const project = findActualProject( projects, adminProjectId );
 
-    const { formState, handleInputChange } = useForm(project);
+    const { formState, handleInputChange, handleResetForm } = useForm(project);
 
     return (
         <LayoutAdmin>
             <Link to={'/admin'}>
-                <Button text={'Volver'} />
+                <Button text={'Volver'} color={'darkBlue'} />
             </Link>
-
-            <Form formState = { formState } handleInputChange={ handleInputChange }/>
+            {
+                !project 
+                ? 
+                <div className="h-96 flex justify-center items-center">
+                    <p>No se pudo cargar. Volvé para atras y reingresá</p>
+                </div>
+                : <Form formState = { formState } handleInputChange={ handleInputChange } handleResetForm = { handleResetForm }/>
+            }
 
         </LayoutAdmin>
     )
 }
-
-// <form>
-//     <div>
-//         <label htmlFor=""></label>
-//         <input type="text" value={ actualProject.name } />
-//     </div>
-//     <div>
-//         <label htmlFor=""></label>
-//         <input type="text" value={ actualProject.description } />
-//     </div>
-//     <div className="border w-3/12 rounded-md overflow-hidden">
-//         { Array.isArray(actualProject.images) 
-//             ? actualProject.images.map(( image ) => (
-//             <img src={image} alt={name} />
-//         )) : '' }
-//     </div>
-//     <div className="border w-3/12 rounded-md overflow-hidden">
-//         { Array.isArray(actualProject.videos)
-//             ? actualProject.videos.map(( video ) => (
-//                 <video width="320" height="240" controls>
-//                     <source src={ video } />
-//                 </video>
-//             )) : '' }
-//     </div>
-//     { actualProject.project }
-// </form>

@@ -1,19 +1,19 @@
 import { startUploadingImgsAndVds, uploadFirebase } from "./";
 
 
-export const startUploadingFirebase = async ({ name, description, Imágenes: imgs, Videos: videos, visibility, project }) => {
-
+export const startUploadingFirebase = async ({ name, description, images, videos, visibility, project }) => {
+    console.log({ name, description, images, videos, visibility, project });
     let imageUrls = [];
     let videoUrls = [];
 
     try {
-        if (imgs?.length > 0) {
-            imageUrls = await startUploadingImgsAndVds(imgs);
+        if (images?.length > 0) {
+            imageUrls = await startUploadingImgsAndVds(images);
         };
         if (videos?.length > 0) {
             videoUrls = await startUploadingImgsAndVds(videos);
         };
-        const formData = { name, description, imgs: imageUrls, videos: videoUrls, visibility, project }
+        const formData = { name, description, images, videos, visibility, project }
 
         await uploadFirebase(formData);
         return { status: 'Uploaded correctly' };

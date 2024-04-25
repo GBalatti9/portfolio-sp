@@ -18,7 +18,7 @@ export const AdminPage = () => {
     const [ formOpen, setFormOpen ] = useState(false);
     const [ fadeOut, setFadeOut ]   = useState(false);
 
-    const { formState, handleInputChange } = useForm(initialForm);
+    const { formState, handleInputChange, handleResetForm } = useForm(initialForm);
 
     const handleFormOpen = () => {
         setTimeout(() => {
@@ -59,7 +59,12 @@ export const AdminPage = () => {
                 formOpen 
                 ?
                 <div className={`${fadeOut ? "animate-fadeOut" : "animate-fadeIn"}`}>
-                        <Form onClick = { handleFormClose } formState={ formState } handleInputChange = { handleInputChange }/>
+                        <Form 
+                            onClick           = { handleFormClose } 
+                            formState         = { formState } 
+                            handleInputChange = { handleInputChange }
+                            handleResetForm   = { handleResetForm }
+                            />
                     </div>
                 : 
                 <Table />

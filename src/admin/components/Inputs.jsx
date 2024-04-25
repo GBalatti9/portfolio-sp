@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 export const Inputs = ({ name, type, handleInputChange, values }) => {
 
     const [files, setFiles] = useState([]);
-    console.log({ values });
+    // console.log({ values });
     const fileInputRef = useRef();
 
     const handleFilesUpload = (e) => {

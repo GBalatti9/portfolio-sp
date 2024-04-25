@@ -22,23 +22,13 @@ const formElements = [
     { name: 'project', type: 'select' },
 ]
 
-export const Form = ({ onClick, formState, handleInputChange }) => {
-    const [loading, setLoading] = useState(false);
-    console.log({ formState });
-    useEffect(() => {
-        console.log({ formState });
-        if ( Object.values(formState).length === 0 ) {
-            setLoading(true);
-        } else {
-            setLoading( false )
-        }
-    }, [ formState ]);
+export const Form = ({ onClick, formState, handleInputChange, handleResetForm }) => {
+    const [ loading, setLoading ] = useState( false );
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         handleResetForm();
         localStorage.removeItem('documents');
-
         if (Object.values(formState).length === 0) return;
 
         setLoading(true);
@@ -62,7 +52,7 @@ export const Form = ({ onClick, formState, handleInputChange }) => {
                             <Inputs {...element}
                                 key={element + i}
                                 handleInputChange={handleInputChange}
-                                values={ Object.values(formState).length === 0 ? initialForm : formState }
+                                values={ formState }
                             />
                         ))
                     }

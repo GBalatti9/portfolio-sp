@@ -10,7 +10,7 @@ export const Table = () => {
 
     const dispatch = useDispatch();
     const { isLoading: loading, projects, error } = useSelector((state) => state.projects);
-    console.log({ projects });
+    // console.log({ projects });
 
     useEffect(() => {
         dispatch(getDocuments());
