@@ -12,7 +12,7 @@ export const HomePage = () => {
         <>
             <HomeLayout menuVisible={menuVisible}>
                 {/* <div className="overflow-hidden text-center"> */}
-                    <h1 style={{ fontSize: '5rem' }}>
+                    <h1 style={{ fontSize: '4rem' }} className="inter-font">
                         Salvador Posse
                         {/* <Typewriter
                             options={{
@@ -23,7 +23,7 @@ export const HomePage = () => {
                         /> */}
                         </h1>
                 {/* </div> */}
-                <button onClick={() => setMenuVisible(!menuVisible)}>Don't click me</button>
+                <button onClick={() => setMenuVisible(!menuVisible)}>{ !menuVisible ? "Don't click me" : "Don't click me again" }</button>
             </HomeLayout>
         </>
     )

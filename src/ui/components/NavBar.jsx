@@ -19,10 +19,10 @@ export const NavBar = ( ) => {
     }
 
     return (
-        <ul className={`flex justify-around mt-5`} id="navbar">
+        <ul className="flex justify-around mt-5 w-4/12 mx-auto shadow-lg" id="navbar">
         {
             newItems.map(( item ) => (
-                <Link key={item} className="text-2xl py-2" to={`/${ item.toLowerCase() }`}> { item } </Link>
+                <Link key={item} className="py-1 uppercase opacity-100" style={{ fontFamily: 'Roboto, sans-serif' }}  to={`/${ item.toLowerCase() }`}> { item } </Link>
             ))
         }
         </ul>
