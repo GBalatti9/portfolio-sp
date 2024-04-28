@@ -5,14 +5,6 @@ import { startUploadingFirebase, startUploadingImgsAndVds, uploadFirebase } from
 import { useEffect, useState } from "react";
 import { LoadingSpinner } from "../../ui/components";
 
-// const formElements = [
-//     { name: 'Nombre', type: 'text' },
-//     { name: 'Descripción', type: 'textarea' },
-//     { name: 'Imágenes', type: 'file' },
-//     { name: 'Videos', type: 'file' },
-//     { name: 'Visibilidad', type: 'checkbox' },
-//     { name: 'project', type: 'select' },
-// ]
 const formElements = [
     { name: 'name', type: 'text' },
     { name: 'description', type: 'textarea' },
@@ -56,23 +48,6 @@ export const Form = ({ onClick, formState, handleInputChange, handleResetForm })
                             />
                         ))
                     }
-                    {/* <br /> */}
-                    {/* <br /> */}
-                    {/* {Array.isArray(values.images) ?
-                        <div className="border border-red-500 rounded-md overflow-hidden">
-                            {values.images.map((image) => (
-                                <img src={image} alt="" />
-                            ))}
-                        </div>
-                        : <p> {values.images} </p>} */}
-                    {/* <br /> */}
-                    {/* {Array.isArray(values.videos) ?
-                        <div>
-                            {values.videos.map((video) => (
-                                <img src={video} alt="" />
-                            ))}
-                        </div>
-                        : <p> {values.videos} </p>} */}
                     <div className="flex justify-around col-span-2 my-2">
                         <Button color={"red"} text="Descartar" onClick={onClick} setDisabled={`${loading ? 'disabled' : ''}`} />
                         <Button color={"blue"} text="Guardar" setDisabled={`${loading ? 'disabled' : ''}`} />

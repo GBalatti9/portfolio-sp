@@ -60,7 +60,7 @@ export const Inputs = ({ name, type, handleInputChange, values }) => {
                             name === 'project' ?
                                 <div className="mt-2 mx-auto shadow-md rounded-md border">
                                     <select name="project" id="project" className="text-center px-2 py-2 rounded" onChange={handleInputChange}>
-                                        <option value = "Elegir" disabled defaultValue={'Tipo de proyecto'}>Tipo de proyecto</option>
+                                        <option value = "Elegir">Tipo de proyecto</option>
                                         <option value = "ads">Ads</option>
                                         <option value = "personal-project">Personal Project</option>
                                     </select>

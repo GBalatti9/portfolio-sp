@@ -8,13 +8,12 @@ export const startUploadingFirebase = async ({ name, description, images, videos
 
     try {
         if (images?.length > 0) {
-            imageUrls = await startUploadingImgsAndVds(images);
+            imageUrls.push(...await startUploadingImgsAndVds(images));
         };
         if (videos?.length > 0) {
-            videoUrls = await startUploadingImgsAndVds(videos);
+            videoUrls.push(...await startUploadingImgsAndVds(videos));
         };
-        const formData = { name, description, images, videos, visibility, project }
-
+        const formData = { name, description, images: imageUrls, videos: videoUrls, visibility, project }
         await uploadFirebase(formData);
         return { status: 'Uploaded correctly' };
 

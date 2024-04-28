@@ -69,13 +69,13 @@ export const Table = () => {
                                 {
                                     project.images !== 'No images' ?
                                         <div className="border border-slate-500 h-44 my-2 rounded overflow-hidden">
-                                            <img src={project.images} className="w-full h-full object-cover" alt={project.images} />
+                                            <img src={project.images[0]} className="w-full h-full object-cover" alt={project.name} />
                                         </div>
                                         : <div>
                                             <p><span className="font-bold">Imagenes: </span>No hay imágenes</p>
                                         </div>
                                 }
-                                {
+                                {/* {
                                     project.videos !== 'No videos' ?
                                         <div className="border border-slate-500 h-44 rounded">
                                             <video className="w-full h-full object-cover" autoPlay muted playsInline loop> <source src={project.videos[0] || ''} type="video/mp4" name="video" />  </video>
@@ -83,7 +83,7 @@ export const Table = () => {
                                         : <div>
                                             <p><span className="font-bold">Videos: </span>No hay videos</p>
                                         </div>
-                                }
+                                } */}
                                 <p><span className="font-bold">Description: </span> {project.description}</p>
                                 <p><span className="font-bold">Visibility: </span> {project.visibility ? 'True' : 'False'}</p>
                                 <p><span className="font-bold">Type: </span> {project.project}</p>

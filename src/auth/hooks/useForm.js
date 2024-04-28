@@ -15,7 +15,13 @@ export const useForm = ( initialForm ) => {
     }
 
     const handleResetForm = () => {
-        setFormState({});
+        setFormState({
+                name: '',
+                description: '',
+                images: [] || '',
+                videos: [] || '',
+                visibility: false,
+            });
     }
     
     return { 

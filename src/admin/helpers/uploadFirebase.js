@@ -10,9 +10,9 @@ export const uploadFirebase = async ( formData ) => {
     const { name, description, images, videos, visibility, project } = formData;
     console.log({ formData });
     console.log({ name });
-    const idName = name.toLowerCase().split(' ').join('-');
+    const idName = name?.toLowerCase().split(' ').join('-');
     console.log({ idName });
-
+    console.log({ images, videos });
     try {
         await setDoc(doc(db, 'portfolio', idName), {
             name:        name,
@@ -20,7 +20,7 @@ export const uploadFirebase = async ( formData ) => {
             images:      images?.length === 0   ? 'No images' : images,
             videos:      videos?.length === 0 ? 'No videos' : videos,
             visibility:  visibility,
-            project:     project.toLowerCase(),
+            project:     project?.toLowerCase(),
         });
 
     } catch (error) {

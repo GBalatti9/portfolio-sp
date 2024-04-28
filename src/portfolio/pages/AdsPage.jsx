@@ -11,6 +11,7 @@ export const AdsPage = () => {
     // const { ads, loading } = useFetchHook();
     const { projects, isLoading: loading } = useSelector(( state ) => state.projects);
     const ads = filterDocuments( projects, 'ads' );
+    console.log({ ads });
     return (
         <Layout overflow='auto'>
             <NavBar />
