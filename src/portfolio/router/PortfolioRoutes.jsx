@@ -10,6 +10,7 @@ export const PortfolioRoutes = () => {
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<HomePage />} />
+                <Route path="home" element={<HomePage />} />
 
                 <Route path="personal projects" element={<WorkPage />} />
                 <Route path="ads" element={<AdsPage />} />
