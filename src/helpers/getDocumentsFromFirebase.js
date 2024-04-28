@@ -14,7 +14,6 @@ export const getDocumentsFromFirebase = async () => {
             }
             documents.push(document);
         });
-        
         return { documents };
     } catch (error) {
         console.error('Error en admin/helpers/getDocumentsFromFirestore: ', error);

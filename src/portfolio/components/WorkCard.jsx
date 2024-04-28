@@ -7,7 +7,6 @@ export const WorkCard = ({ id, name, description, images, videos, visibility, pr
 
     const navigate = useNavigate();
 
-
     const proyectPage = ( id ) => {
         navigate(`/${project}/${id}`)
     }

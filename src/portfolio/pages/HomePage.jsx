@@ -3,11 +3,12 @@ import { NavBar } from "../../ui/components"
 import { HomeLayout } from "../layout/HomeLayout"
 import '../../index.css';
 import Typewriter from 'typewriter-effect';
+import { useDispatch } from "react-redux";
+import { getDocuments } from "../../store/projects/thunks";
 
 
 export const HomePage = () => {
     const [menuVisible, setMenuVisible] = useState(false);
-
     return (
         <>
             <HomeLayout menuVisible={menuVisible}>

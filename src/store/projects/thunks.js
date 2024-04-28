@@ -8,7 +8,7 @@ export const getDocuments = () => {
     return async ( dispatch ) => {
         dispatch(startLoading());
         const documentsFromLs = JSON.parse(localStorage.getItem('documents'));
-        if (!documentsFromLs) {
+        if (!documentsFromLs || documentsFromLs.length === 0) {
             const { documents } = await getDocumentsFromFirebase();
             localStorage.setItem('documents', JSON.stringify(documents));
             dispatch(setItems( documents ));

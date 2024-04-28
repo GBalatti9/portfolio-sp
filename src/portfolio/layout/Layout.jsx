@@ -7,6 +7,7 @@ export const Layout = ({ children, overflow }) => {
 
     const dispatch = useDispatch();
     useEffect(() => {
+        console.log('ejecutando el useEffect');
         dispatch(getDocuments());
     },[])
 
