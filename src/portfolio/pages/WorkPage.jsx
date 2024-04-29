@@ -1,4 +1,6 @@
 
+
+// ESTE ARCHIVO ESTA INUTILIZADO
 import { useSelector } from 'react-redux';
 import { LoadingSpinner, NavBar } from '../../ui/components'
 import { Layout } from '../layout'
@@ -13,3 +15,5 @@ export const WorkPage = () => {
         </Layout>
     )
 }
+
+
