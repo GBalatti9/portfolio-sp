@@ -15,6 +15,7 @@ export const ProyectPage = () => {
     return (
         <Layout overflow='auto'>
             <NavBar />
+            <p>Hola</p>
             {/* <p>{docObj?.name}</p> */}
             <ToggleMenuBtn />
         </Layout>

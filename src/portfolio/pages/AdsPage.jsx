@@ -6,10 +6,11 @@ import { WorkCard } from '../components'
 import { Layout } from '../layout'
 import { filterDocuments } from '../../helpers/filterDocuments';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const AdsPage = () => {
 
-    const [hoverIndex, setHoverIndex] = useState(null);
+    const [ hoverIndex, setHoverIndex ] = useState(null);
 
     const { projects, isLoading: loading } = useSelector((state) => state.projects);
     const ads = filterDocuments(projects, 'ads');
@@ -18,12 +19,13 @@ export const AdsPage = () => {
         <Layout overflow='auto'>
             <NavBar />
             <LoadingSpinner loading={loading}>
-                <div className="sm:w-11/12 md:w-8/12 mx-auto grid sm:grid-cols-3 border mt-8">
+                <div className="sm:w-11/12 md:w-8/12 mx-auto grid sm:grid-cols-3 mt-8">
                     {
                         ads.length > 0 &&
                         ads?.map((doc, index) => (
-                            <div className={`transition-opacity duration-300 w-full h-48 hover:shadow-lg mx-auto cursor-pointer relative ${hoverIndex === index || hoverIndex === null ? '' : 'opacity-50'}`}
-                                onClick={() => { proyectPage(id) }}
+                            <Link
+                                to={`/${doc.id}`} 
+                                className={`transition-opacity duration-300 w-full h-48 hover:shadow-lg mx-auto cursor-pointer relative ${hoverIndex === index || hoverIndex === null ? '' : 'opacity-50'}`}
                                 onMouseEnter={() => setHoverIndex(index)}
                                 onMouseLeave={() => setHoverIndex(null)}
                                 key={doc.id}
@@ -35,7 +37,7 @@ export const AdsPage = () => {
                                         <p className='text-2xl'>{doc.name}</p>
                                     </div>
                                 }
-                            </div>
+                            </Link>
                         ))
                     }
                 </div>

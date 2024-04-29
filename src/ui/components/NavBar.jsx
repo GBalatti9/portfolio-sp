@@ -20,7 +20,7 @@ export const NavBar = ( ) => {
         <ul className="flex justify-around mt-5 md:w-4/12 mx-auto shadow-lg z-10" id="navbar">
         {
             newItems.map(( item ) => (
-                <Link key={item} className="py-1 uppercase opacity-100" style={{ fontFamily: 'Roboto, sans-serif' }}  to={`/${ item.toLowerCase() }`}> { item } </Link>
+                <Link key={item} className="py-1 uppercase opacity-100 hover:underline" style={{ fontFamily: 'Roboto, sans-serif' }}  to={`/${ item.toLowerCase() }`}> { item } </Link>
             ))
         }
         </ul>
