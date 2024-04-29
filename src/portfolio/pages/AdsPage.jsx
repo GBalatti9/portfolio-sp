@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 export const AdsPage = () => {
 
-    const [ hoverIndex, setHoverIndex ] = useState(null);
+    const [hoverIndex, setHoverIndex] = useState(null);
 
     const { projects, isLoading: loading } = useSelector((state) => state.projects);
     const ads = filterDocuments(projects, 'ads');
@@ -18,11 +18,11 @@ export const AdsPage = () => {
         <Layout overflow='auto'>
             <NavBar />
             <LoadingSpinner loading={loading}>
-                <div className="w-8/12 mx-auto grid grid-cols-3 mt-4">
+                <div className="sm:w-11/12 md:w-8/12 mx-auto grid sm:grid-cols-3 border mt-8">
                     {
                         ads.length > 0 &&
                         ads?.map((doc, index) => (
-                            <div className={`transition-opacity duration-300 w-full hover:shadow-lg mx-auto cursor-pointer relative ${hoverIndex === index || hoverIndex === null ? '' : 'opacity-50'}`}
+                            <div className={`transition-opacity duration-300 w-full h-48 hover:shadow-lg mx-auto cursor-pointer relative ${hoverIndex === index || hoverIndex === null ? '' : 'opacity-50'}`}
                                 onClick={() => { proyectPage(id) }}
                                 onMouseEnter={() => setHoverIndex(index)}
                                 onMouseLeave={() => setHoverIndex(null)}
@@ -32,7 +32,7 @@ export const AdsPage = () => {
                                 {
                                     hoverIndex === index &&
                                     <div className='transition-opacity duration-300 absolute top-0 w-full h-full flex justify-center items-center bg-gray-950/70 text-white'>
-                                        <p className='text-2xl'>{ doc.name }</p>
+                                        <p className='text-2xl'>{doc.name}</p>
                                     </div>
                                 }
                             </div>
