@@ -11,7 +11,7 @@ export const WorkPage = () => {
     return (
         <Layout overflow='auto'>
             <NavBar />
-            <WorkContainer type={'projects'} />
+            <WorkContainer type='personal-project' />
         </Layout>
     )
 }
