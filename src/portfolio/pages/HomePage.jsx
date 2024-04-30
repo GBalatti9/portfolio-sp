@@ -3,11 +3,13 @@ import { NavBar } from "../../ui/components"
 import { HomeLayout } from "../layout/HomeLayout"
 import '../../index.css';
 import Typewriter from 'typewriter-effect';
+import { Stickers } from "../components";
 
 export const HomePage = () => {
     const [menuVisible, setMenuVisible] = useState(false);
     return (
         <>
+        { menuVisible && <Stickers />}
             <HomeLayout menuVisible={menuVisible}>
                 {/* <div className="overflow-hidden text-center"> */}
                     <h1 style={{ fontSize: '4rem' }} className="inter-font">

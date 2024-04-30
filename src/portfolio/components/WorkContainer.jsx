@@ -14,13 +14,13 @@ export const WorkContainer = ({ type }) => {
 
     return (
         <LoadingSpinner loading={loading}>
-            <div className="sm:w-11/12 gap-10 mx-auto grid sm:grid-cols-3 mt-8">
+            <div className="sm:w-11/12 md:w-10/12 md:gap-5 mx-auto grid sm:grid-cols-3 mt-8">
                 {
                     ads.length > 0 &&
                     ads?.map((doc, index) => (
                         <Link
                             to={`/${doc.id}`}
-                            className={`transition-opacity duration-300 w-full h-48 hover:shadow-lg mx-auto cursor-pointer relative ${hoverIndex === index || hoverIndex === null ? '' : 'opacity-50'}`}
+                            className={`mb-4 transition-opacity duration-300 w-full h-48 hover:shadow-lg mx-auto cursor-pointer relative ${hoverIndex === index || hoverIndex === null ? '' : 'opacity-50'}`}
                             onMouseEnter={() => setHoverIndex(index)}
                             onMouseLeave={() => setHoverIndex(null)}
                             key={doc.id}
