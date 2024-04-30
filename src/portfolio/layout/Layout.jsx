@@ -5,6 +5,7 @@ import { getDocuments } from '../../store/projects/thunks';
 
 export const Layout = ({ children, overflow }) => {
 
+
     const dispatch = useDispatch();
     useEffect(() => {
         console.log('ejecutando el useEffect');
@@ -19,6 +20,7 @@ export const Layout = ({ children, overflow }) => {
         transition = {{ duration: 0.5 }}
         className  = {`absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] transition-opacity ${overflow === 'auto' ? 'overflow-auto' : 'overflow-hidden'}`}>
             { children }
+
         </motion.div>
     )
 }
