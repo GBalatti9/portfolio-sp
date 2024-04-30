@@ -7,13 +7,14 @@ import { Stickers } from "../components";
 
 export const HomePage = () => {
     const [menuVisible, setMenuVisible] = useState(false);
+
     return (
         <>
-        { menuVisible && <Stickers />}
             <HomeLayout menuVisible={menuVisible}>
+                <Stickers />
                 {/* <div className="overflow-hidden text-center"> */}
-                    <h1 style={{ fontSize: '4rem' }} className="inter-font">
-                        Salvador Posse
+                    {/* <h1 style={{ fontSize: '4rem' }} className="inter-font"> */}
+                        {/* Salvador Posse */}
                         {/* <Typewriter
                             options={{
                                 strings: ['Salvador Posse', 'Creative', 'Advertiser'],
@@ -21,9 +22,12 @@ export const HomePage = () => {
                                 loop: true,
                             }}
                         /> */}
-                        </h1>
+                        {/* </h1> */}
                 {/* </div> */}
-                <button onClick={() => setMenuVisible(!menuVisible)}>{ !menuVisible ? "Don't click me" : "Don't click me again" }</button>
+                <button onClick={() => setMenuVisible(!menuVisible)} 
+                    className="border border-red-500 w-1/12 h-12 rounded-xl bg-red-500 text-white hover:bg-red-800 hover:border-red-800">
+                    !
+                </button>
             </HomeLayout>
         </>
     )
