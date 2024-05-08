@@ -3,6 +3,7 @@ import { useState } from "react";
 import { NavBar } from "../../ui/components";
 import { Layout } from "../layout";
 import { motion, AnimatePresence } from 'framer-motion';
+import Accordion from "../components/CustomAccordion";
 
 
 export const AboutPage = () => {
@@ -10,7 +11,9 @@ export const AboutPage = () => {
     return (
         <Layout>
                     <NavBar />
-                    <div>About page</div>
+                    <div className="border flex justify-center">
+                        <Accordion />
+                    </div>
         </Layout>
     )
 }

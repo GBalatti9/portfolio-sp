@@ -1,5 +1,5 @@
 
-import NavBarCustom from "@/ui/components/NavBarCustom"
+
 import { NavBar } from "../../ui/components"
 import { Layout } from "./"
 

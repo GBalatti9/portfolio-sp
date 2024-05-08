@@ -14,6 +14,7 @@ export const PortfolioRoutes = () => {
 
                 <Route path="personal projects" element={<WorkPage />} />
                 <Route path="ads" element={<AdsPage />} />
+                <Route path="about" element={<AboutPage />} />
 
                 <Route path="/:workId" element={<ProyectPage />} />
 
